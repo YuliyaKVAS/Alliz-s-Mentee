@@ -1,2 +1,2 @@
-import "./style.less";
-console.log("Helollllllllo,!!!");
+import './style.less';
+console.log('Helollllllllo,!!!', 'lalalla');
