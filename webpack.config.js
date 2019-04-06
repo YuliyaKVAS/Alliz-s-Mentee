@@ -1,5 +1,5 @@
 const path = require('path');
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+//const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
@@ -28,10 +28,6 @@ module.exports = {
     ]
   },
   plugins: [
-      new MiniCssExtractPlugin({
-        filename: '[name].css',
-        chunkFilename: "[id].css"
-      }),
       new HtmlWebpackPlugin({
          inject: false,
          hash: true,
