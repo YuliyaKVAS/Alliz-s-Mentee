@@ -1,8 +1,12 @@
 import React from 'react';
-import Header from '../Header'; 
+import Header from '../Header';
+import SearchPanel from '../SearchPanel';
 
 const App = () => (
-  <Header />
+  <div>
+    <Header />
+    <SearchPanel />
+  </div>
 );
 
-export default App; 
+export default App;
