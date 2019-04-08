@@ -1,6 +1,6 @@
 module.exports = {
-    "extends": ["airbnb", "plugin:flowtype/recommended"],
-    "plugins": ["import", "flowtype"],
+    "extends": "airbnb",
+    "plugins": ["import"],
     "settings": {
         "import/resolver": {
             "webpack": {
@@ -9,6 +9,7 @@ module.exports = {
         }
     },
     "rules": {
+        "react/forbid-prop-types": 0,
         "import/no-named-as-default": "off",
         "comma-dangle": ["error", "never"],
         "no-param-reassign": [2, {"props": false}],
