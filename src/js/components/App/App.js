@@ -1,12 +1,21 @@
 import React from 'react';
-import Header from '../Header';
-import SearchPanel from '../SearchPanel';
+import { HashRouter, Route } from 'react-router-dom';
+import Courses from '../Courses';
+import Footer from '../Footer';
 
 const App = () => (
-  <div>
-    <Header />
-    <SearchPanel />
-  </div>
+  <HashRouter>
+    <Route
+      path="/courses"
+      component={Footer}
+    />
+    <Route
+      path="/"
+      exact
+      component={Courses}
+    />
+  </HashRouter>
+
 );
 
 export default App;

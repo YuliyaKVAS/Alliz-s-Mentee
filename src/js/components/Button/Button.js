@@ -17,6 +17,7 @@ const Button = (props) => {
       onClick={props.onClick}
       disabled={props.disabled}
       className={classes.button}
+      fullWidth={props.fullWidth}
     >
       {props.children}
     </MuiButton>

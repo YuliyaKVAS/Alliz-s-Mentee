@@ -9,7 +9,7 @@ module.exports = {
         }
     },
     "rules": {
-        "react/forbid-prop-types": 0,
+        "react/prop-types": 0,
         "import/no-named-as-default": "off",
         "comma-dangle": ["error", "never"],
         "no-param-reassign": [2, {"props": false}],
