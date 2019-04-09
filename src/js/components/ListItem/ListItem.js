@@ -19,14 +19,14 @@ const ListItem = (props) => {
     <Paper className={classes.root}>
       <div className={style.first}>
         <h5 className={style.listTitle}>
-          Video course
+          {props.title}
         </h5>
         <div className={style.group}>
           <span className={style.timing}>
-            27 min
+            {props.timing}
           </span>
           <span className={style.date}>
-            27.09.17
+            {props.date}
           </span>
           <Button
             color="primary"
@@ -38,8 +38,7 @@ const ListItem = (props) => {
       </div>
       <div className={style.second}>
         <span>
-          lallaalalalalalalalalallllalallalalallalallalala
-          skkkkkkkkkkkkkkkkkkkkkkskkskl
+          {props.text}
         </span>
         <Button
           color="secondary"

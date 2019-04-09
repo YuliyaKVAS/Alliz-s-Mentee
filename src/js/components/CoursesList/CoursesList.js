@@ -2,27 +2,26 @@ import React from 'react';
 import styles from './CoursesList.less';
 import ListItem from '../ListItem';
 import Button from '../Button';
+import template from './template';
 
-const CoursesList = () => (
-  <div className={styles.container}>
-    <span className={styles.header}>
+const CoursesList = () => {
+  const renderList = temp => temp.map(item => (
+    <ListItem title={item.title} timing={item.timing} text={item.text} />));
+  return (
+    <div className={styles.container}>
+      <span className={styles.header}>
       Courses
-    </span>
-    <ListItem />
-    <ListItem />
-    <ListItem />
-    <ListItem />
-    <ListItem />
-    <ListItem />
-    <ListItem />
-    <Button
-      variant="contained"
-      color="primary"
-      fullWidth
-    >
+      </span>
+      {renderList(template)}
+      <Button
+        variant="contained"
+        color="primary"
+        fullWidth
+      >
       Load more
-    </Button>
-  </div>
-);
+      </Button>
+    </div>
+  );
+};
 
 export default CoursesList;
