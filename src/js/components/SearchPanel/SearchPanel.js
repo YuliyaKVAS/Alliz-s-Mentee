@@ -1,9 +1,7 @@
 import React from 'react';
-import { withStyles } from '@material-ui/core/styles';
-import TextField from '@material-ui/core/TextField';
+import TextField from '../TextField';
 import style from './SearchPanel.less';
 import Button from '../Button';
-import styles from './styles';
 
 class SeachPanel extends React.PureComponent {
   constructor(props) {
@@ -14,16 +12,11 @@ class SeachPanel extends React.PureComponent {
   }
 
   render() {
-    const { classes } = this.props;
     return (
       <div className={style.searchWrapper}>
         <div className={style.searchPanel}>
           <TextField
-            id="outlined-search"
-            label="Search field"
-            type="search"
-            className={classes.textField}
-            margin="normal"
+            label="Search.."
             variant="outlined"
           />
           <Button
@@ -38,4 +31,4 @@ class SeachPanel extends React.PureComponent {
   }
 }
 
-export default withStyles(styles)(SeachPanel);
+export default SeachPanel;
