@@ -1,16 +1,12 @@
 import React from 'react';
-import Header from '../Header';
-import SearchPanel from '../SearchPanel';
+import AddCoursePanel from '../AddCoursePanel';
 import CoursesList from '../CoursesList';
-import Footer from '../Footer';
 
 const Courses = () => (
-  <div>
-    <Header />
-    <SearchPanel />
+  <>
+    <AddCoursePanel />
     <CoursesList />
-    <Footer />
-  </div>
+  </>
 );
 
 export default Courses;

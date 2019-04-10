@@ -3,16 +3,9 @@ import { withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import style from './SearchPanel.less';
 import Button from '../Button';
+import styles from './styles';
 
-const styles = theme => ({
-  textField: {
-    marginLeft: theme.spacing.unit,
-    marginRight: theme.spacing.unit,
-    width: 500
-  }
-});
-
-class SeachPanel extends React.Component {
+class SeachPanel extends React.PureComponent {
   constructor(props) {
     super(props);
     this.state = {
@@ -40,12 +33,6 @@ class SeachPanel extends React.Component {
             Search
           </Button>
         </div>
-        <Button
-          variant="contained"
-          color="primary"
-        >
-            Add course
-        </Button>
       </div>
     );
   }

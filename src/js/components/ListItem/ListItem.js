@@ -3,15 +3,7 @@ import { withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import style from './ListItem.less';
 import Button from '../Button';
-
-const styles = theme => ({
-  root: {
-    ...theme.mixins.gutters(),
-    paddingTop: theme.spacing.unit,
-    paddingBottom: theme.spacing.unit,
-    margin: 8
-  }
-});
+import styles from './styles';
 
 const ListItem = (props) => {
   const { classes } = props;
