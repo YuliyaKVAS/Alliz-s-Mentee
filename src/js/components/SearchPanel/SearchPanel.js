@@ -3,13 +3,12 @@ import TextField from '../TextField';
 import style from './SearchPanel.less';
 import Button from '../Button';
 
+/* eslint-disable */
+
 class SeachPanel extends React.PureComponent {
-  constructor(props) {
-    super(props);
-    this.state = {
-      value: ''
-    };
-  }
+  state = {
+    value: ''
+  };
 
   render() {
     return (

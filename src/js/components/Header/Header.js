@@ -1,32 +1,41 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styles from './Header.less';
 import Button from '../Button';
 
-const Header = () => (
-  <div className={styles.headerWrapper}>
-    <div className={styles.logoName}>
-      <div className={styles.logo}>
-        Logo
+const Header = () => {
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+  };
+  const LoginLink = props => <Link to="/login" {...props} />;
+  return (
+    <div className={styles.headerWrapper}>
+      <div className={styles.logoName}>
+        <div className={styles.logo}>
+          Logo
+        </div>
+        <div className={styles.name}>
+          Name
+        </div>
       </div>
-      <div className={styles.name}>
-        Name
-      </div>
-    </div>
-    <div className={styles.loginButtons}>
-      <Button
-        color="primary"
-        variant="contained"
-      >
+      <div className={styles.loginButtons}>
+        <Button
+          color="primary"
+          variant="contained"
+        >
         log in
-      </Button>
-      <Button
-        color="secondary"
-        variant="contained"
-      >
-        log out
-      </Button>
+        </Button>
+        <Button
+          color="secondary"
+          variant="contained"
+          component={LoginLink}
+          onClick={handleLogout}
+        >
+          log out
+        </Button>
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 export default Header;
