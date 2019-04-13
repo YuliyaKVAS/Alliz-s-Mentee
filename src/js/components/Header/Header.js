@@ -7,7 +7,7 @@ const Header = () => {
   const handleLogout = () => {
     localStorage.removeItem('token');
   };
-  const LoginLink = props => <Link to="/login" {...props} />;
+  const loginLink = props => <Link to="/login" {...props} />;
   return (
     <div className={styles.headerWrapper}>
       <div className={styles.logoName}>
@@ -28,7 +28,7 @@ const Header = () => {
         <Button
           color="secondary"
           variant="contained"
-          component={LoginLink}
+          component={loginLink}
           onClick={handleLogout}
         >
           log out

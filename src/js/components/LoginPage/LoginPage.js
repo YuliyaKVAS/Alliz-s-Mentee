@@ -4,6 +4,8 @@ import TextField from '../TextField';
 import Button from '../Button';
 import styles from './LoginPage.less';
 
+const coursesLink = props => <Link to="/courses" {...props} />;
+
 class LoginPage extends React.PureComponent {
   state = {
     email: '',
@@ -17,8 +19,6 @@ class LoginPage extends React.PureComponent {
   handleClickLogin = () => {
     localStorage.setItem('token', this.state.email);
   };
-
-  CoursesLink = props => <Link to="/courses" {...props} />;
 
   render() {
     return (
@@ -41,7 +41,7 @@ class LoginPage extends React.PureComponent {
           variant="outlined"
           disabled={!this.state.email || !this.state.password}
           onClick={this.handleClickLogin}
-          component={this.CoursesLink}
+          component={coursesLink}
         >
         Log in
         </Button>
