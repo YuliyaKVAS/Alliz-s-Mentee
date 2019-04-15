@@ -1,26 +1,38 @@
-import React from 'react';
+import React, { PureComponent } from 'react';
+import { getCourses } from '../../services';
 import styles from './CoursesList.less';
 import ListItem from '../ListItem';
 import Button from '../Button';
-import template from './template';
 
 const renderList = temp => temp.map(item => (
-  <ListItem title={item.title} timing={item.timing} text={item.text} key={item.id} />));
+  <ListItem title={item.name} timing={item.length} text={item.description} key={item.id} />));
+class CoursesList extends PureComponent {
+  state = {
+    courses: []
+  }
 
-const CoursesList = () => (
-  <div className={styles.container}>
-    <span className={styles.header}>
-    Courses
-    </span>
-    {renderList(template)}
-    <Button
-      variant="contained"
-      color="primary"
-      fullWidth
-    >
-    Load more
-    </Button>
-  </div>
-);
+  componentDidMount() {
+    getCourses()
+      .then(courses => this.setState({ courses }));
+  }
+
+  render() {
+    return (
+      <div className={styles.container}>
+        <span className={styles.header}>
+        Courses
+        </span>
+        {renderList(this.state.courses)}
+        <Button
+          variant="contained"
+          color="primary"
+          fullWidth
+        >
+        Load more
+        </Button>
+      </div>
+    );
+  }
+}
 
 export default CoursesList;
