@@ -1,5 +1,7 @@
 import React from 'react';
-import { HashRouter as Router, Route, Switch } from 'react-router-dom';
+import {
+  HashRouter as Router, Route, Switch, Redirect
+} from 'react-router-dom';
 import Header from '../Header';
 import Footer from '../Footer';
 import Courses from '../Courses';
@@ -14,7 +16,9 @@ const App = () => (
       <ProtectedRoute
         path="/"
         exact
-        component={Courses}
+        render={() => (
+          <Redirect to="/courses" />
+        )}
       />
       <Route
         path="/login"
