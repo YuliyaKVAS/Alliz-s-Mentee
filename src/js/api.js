@@ -18,10 +18,10 @@ export const postJSON = (url, body) => {
 
 export const putJSON = (url, body) => instance.put(url, body);
 
-export const putJSONById = (url, id, body) => instance.put(`${url}/${id}`, body);
+export const putById = (url, id, body) => instance.put(`${url}/${id}`, body);
 
 export const deleteJSON = (url, id) => instance.delete(`${url}/${id}`);
 
 export default {
-  getJSON, postJSON
+  getJSON, postJSON, putJSON, putById, deleteJSON
 };
