@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import {
   HashRouter as Router, Route, Switch, Redirect
 } from 'react-router-dom';
-import { isUserAuth} from '../../helpers';
+import { isUserAuth } from '../../helpers';
 import Header from '../Header';
 import Footer from '../Footer';
 import Courses from '../Courses';
@@ -10,23 +10,23 @@ import LoginPage from '../LoginPage';
 import ErrorPage from '../ErrorPage';
 import ProtectedRoute from '../ProtectedRoute';
 
-/* eslint-disable */
 class App extends PureComponent {
   state = {
     isAuth: false
   };
 
   componentDidMount() {
-    this.setState({isAuth: isUserAuth()});
+    this.setState({ isAuth: isUserAuth() });
   }
+
   render() {
     const authProps = {
       isAuth: this.state.isAuth,
-      setAuth: (isLogin) => this.setState({isAuth: isLogin})  
-    }
+      setAuth: isLogin => this.setState({ isAuth: isLogin })
+    };
     return (
       <Router>
-        <Header 
+        <Header
           {...authProps}
         />
         <Switch>
@@ -35,50 +35,25 @@ class App extends PureComponent {
             exact
             {...authProps}
           >
-            <Redirect to="/courses" {...authProps}/>
+            <Redirect to="/courses" {...authProps} />
           </Route>
           <Route
             path="/login"
             {...authProps}
-            //component={LoginPage}
-            component={(props) => <LoginPage {...authProps} {...props}/>}
+            component={props => <LoginPage {...authProps} {...props} />}
           />
           <Route
             path="/courses"
-            component={(props) => <Courses {...authProps} {...props}/>}
-            {...authProps}          
+            component={props => <Courses {...authProps} {...props} />}
+            {...authProps}
           />
           <Route component={ErrorPage} />
         </Switch>
 
         <Footer />
       </Router>
-    )
+    );
   }
 }
-// const App = () => (
-//   <Router>
-//     <Header />
-//     <Switch>
-//       <Route
-//         path="/"
-//         exact
-//       >
-//         <Redirect to="/courses" />
-//       </Route>
-//       <Route
-//         path="/login"
-//         component={LoginPage}
-//       />
-//       <Route
-//         path="/courses"
-//         component={Courses}
-//       />
-//       <Route component={ErrorPage} />
-//     </Switch>
-
-//     <Footer />
-//   </Router>
-// );
 
 export default App;

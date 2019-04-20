@@ -25,6 +25,7 @@ const Header = ({ isAuth, setAuth }) => {
           <Button
             color="primary"
             variant="contained"
+            component={loginLink}
           >
         log in
           </Button>

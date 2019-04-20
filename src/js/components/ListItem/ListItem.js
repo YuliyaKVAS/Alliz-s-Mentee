@@ -1,7 +1,6 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
-import { isUserAuth } from '../../helpers';
 import style from './ListItem.less';
 import Button from '../Button';
 import styles from './styles';

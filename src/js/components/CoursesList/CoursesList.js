@@ -1,18 +1,18 @@
 import React, { PureComponent } from 'react';
 import { getCourses } from '../../services';
-import { parseSecToMinutes, parseDate, isUserAuth } from '../../helpers';
+import { parseSecToMinutes, parseDate } from '../../helpers';
 import styles from './CoursesList.less';
 import ListItem from '../ListItem';
 import Button from '../Button';
 
-const renderList = (temp, propsToPass) => temp.map(item => (
+const renderList = (temp, props) => temp.map(item => (
   <ListItem
     title={item.name}
     timing={parseSecToMinutes(item.length)}
     text={item.description}
     key={item.id}
     date={parseDate(item.date)}
-    {...propsToPass}
+    {...props}
   />
 ));
 class CoursesList extends PureComponent {
