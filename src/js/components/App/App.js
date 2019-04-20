@@ -16,10 +16,9 @@ const App = () => (
       <ProtectedRoute
         path="/"
         exact
-        render={() => (
-          <Redirect to="/courses" />
-        )}
-      />
+      >
+        <Redirect to="/courses" />
+      </ProtectedRoute>
       <Route
         path="/login"
         component={LoginPage}
