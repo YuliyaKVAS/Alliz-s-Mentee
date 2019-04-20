@@ -6,4 +6,6 @@ export const parseSecToMinutes = (sec) => {
 
 export const parseDate = date => new Date(date).toDateString().slice(3);
 
-export default { parseSecToMinutes, parseDate };
+export const isUserAuth = () => (!!localStorage.getItem('token'));
+
+export default { parseSecToMinutes, parseDate, isUserAuth };

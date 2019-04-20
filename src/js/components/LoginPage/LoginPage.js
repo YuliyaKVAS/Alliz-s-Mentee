@@ -1,28 +1,47 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import TextField from '../TextField';
 import Button from '../Button';
 import styles from './LoginPage.less';
+import { authUser, getUsers } from '../../services';
 
-const coursesLink = props => <Link to="/courses" {...props} />;
 
+const renderUserList = temp => temp.map(item => (
+  <div key={item.id}>
+    <span><b>Login:</b> {item.login} </span>
+    <span><b>Password:</b> {item.password}</span>
+    <hr />
+  </div>
+));
 class LoginPage extends React.PureComponent {
   state = {
     email: '',
-    password: ''
+    password: '',
+    users: []
   };
+
+  componentDidMount() {
+    getUsers()
+      .then((res) => {
+        const users = res.slice(0, 5);
+        this.setState({ users });
+      });
+  }
 
   handleChangeFieldValue = (event, field) => {
     this.setState({ [field]: event.target.value });
   };
 
   handleClickLogin = () => {
-    localStorage.setItem('token', this.state.email);
+    authUser(this.state.email, this.state.password)
+      .then(() => this.props.history.push('/courses'))
+      .then(() => this.props.setAuth(true))
+      .then(() => this.setState({ email: '', password: '' }));
   };
 
   render() {
     return (
       <div className={styles.logInForm}>
+        {renderUserList(this.state.users)}
         <TextField
           label="Email"
           variant="outlined"
@@ -41,7 +60,6 @@ class LoginPage extends React.PureComponent {
           variant="outlined"
           disabled={!this.state.email || !this.state.password}
           onClick={this.handleClickLogin}
-          component={coursesLink}
         >
         Log in
         </Button>

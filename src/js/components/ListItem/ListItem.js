@@ -1,12 +1,13 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
+import { isUserAuth } from '../../helpers';
 import style from './ListItem.less';
 import Button from '../Button';
 import styles from './styles';
 
 const ListItem = ({
-  title, timing, date, text, classes
+  title, timing, date, text, classes, isAuth, setAuth
 }) => (
   <Paper className={classes.root}>
     <div className={style.first}>
@@ -20,24 +21,28 @@ const ListItem = ({
         <span className={style.date}>
           {date}
         </span>
-        <Button
-          color="primary"
-          variant="outlined"
-        >
+        {isAuth && (
+          <Button
+            color="primary"
+            variant="outlined"
+          >
           Edit
-        </Button>
+          </Button>
+        )}
       </div>
     </div>
     <div className={style.second}>
       <span>
         {text}
       </span>
-      <Button
-        color="secondary"
-        variant="outlined"
-      >
+      {isAuth && (
+        <Button
+          color="secondary"
+          variant="outlined"
+        >
         Delete
-      </Button>
+        </Button>
+      )}
     </div>
   </Paper>
 );

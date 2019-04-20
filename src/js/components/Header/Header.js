@@ -1,11 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { logoutUser } from '../../services';
 import styles from './Header.less';
 import Button from '../Button';
 
-const Header = () => {
+const Header = ({ isAuth, setAuth }) => {
   const handleLogout = () => {
-    localStorage.removeItem('token');
+    logoutUser();
+    setAuth(false);
   };
   const loginLink = props => <Link to="/login" {...props} />;
   return (
@@ -19,20 +21,24 @@ const Header = () => {
         </div>
       </div>
       <div className={styles.loginButtons}>
-        <Button
-          color="primary"
-          variant="contained"
-        >
+        {!isAuth && (
+          <Button
+            color="primary"
+            variant="contained"
+          >
         log in
-        </Button>
-        <Button
-          color="secondary"
-          variant="contained"
-          component={loginLink}
-          onClick={handleLogout}
-        >
+          </Button>
+        )}
+        {isAuth && (
+          <Button
+            color="secondary"
+            variant="contained"
+            component={loginLink}
+            onClick={handleLogout}
+          >
           log out
-        </Button>
+          </Button>
+        )}
       </div>
     </div>
   );

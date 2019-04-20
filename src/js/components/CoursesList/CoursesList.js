@@ -1,17 +1,18 @@
 import React, { PureComponent } from 'react';
 import { getCourses } from '../../services';
-import { parseSecToMinutes, parseDate } from '../../helpers';
+import { parseSecToMinutes, parseDate, isUserAuth } from '../../helpers';
 import styles from './CoursesList.less';
 import ListItem from '../ListItem';
 import Button from '../Button';
 
-const renderList = temp => temp.map(item => (
+const renderList = (temp, propsToPass) => temp.map(item => (
   <ListItem
     title={item.name}
     timing={parseSecToMinutes(item.length)}
     text={item.description}
     key={item.id}
     date={parseDate(item.date)}
+    {...propsToPass}
   />
 ));
 class CoursesList extends PureComponent {
@@ -30,7 +31,7 @@ class CoursesList extends PureComponent {
         <span className={styles.header}>
         Courses
         </span>
-        {renderList(this.state.courses)}
+        {renderList(this.state.courses, this.props)}
         <Button
           variant="contained"
           color="primary"

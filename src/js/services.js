@@ -1,10 +1,29 @@
-import { getData } from './api';
+import { getData, postData } from './api';
 
-export const getCourses = () => getData('courses')
-  .then((result) => {
-    const courses = result.data;
-    return courses;
+export const getCourses = () => getData('courses');
+
+export const getUsers = () => getData('users');
+
+export const authUser = (login, password) => postData('auth/login',
+  {
+    login,
+    password
   })
-  .catch(() => new Error('Server error'));
+  .then((response) => {
+    localStorage.setItem('token', response.data.token);
+    return Promise.resolve(response);
+  })
+  .catch(
+    error => new Promise((resolve, reject) => {
+      if (error.response.status === 401) {
+        reject(new Error('Wrong password'));
+      } else {
+        reject(new Error('Server error'));
+      }
+    })
+  );
 
-export default { getCourses };
+export const logoutUser = () => localStorage.removeItem('token');
+
+
+export default { getCourses, authUser, getUsers, logoutUser };
