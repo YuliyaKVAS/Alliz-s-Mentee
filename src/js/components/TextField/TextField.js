@@ -4,7 +4,7 @@ import { TextField as MuiTextField } from '@material-ui/core';
 import styles from './styles';
 
 const TextField = ({
-  label, value, onChange, classes, variant, type
+  label, value, onChange, classes, variant, type, name
 }) => (
   <MuiTextField
     label={label}
@@ -13,6 +13,7 @@ const TextField = ({
     className={classes.textField}
     variant={variant}
     type={type}
+    name={name}
   />
 );
 
