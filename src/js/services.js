@@ -24,6 +24,3 @@ export const authUser = (login, password) => postData('auth/login',
   );
 
 export const logoutUser = () => localStorage.removeItem('token');
-
-
-export default { getCourses, authUser, getUsers, logoutUser };

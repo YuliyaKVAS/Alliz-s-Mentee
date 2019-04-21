@@ -27,8 +27,9 @@ class LoginPage extends React.PureComponent {
       });
   }
 
-  handleChangeFieldValue = (event, field) => {
-    this.setState({ [field]: event.target.value });
+  handleChangeFieldValue = (event) => {
+    const { name, value } = event.target;
+    this.setState({ [name]: value });
   };
 
   handleClickLogin = () => {
@@ -43,16 +44,18 @@ class LoginPage extends React.PureComponent {
       <div className={styles.logInForm}>
         {renderUserList(this.state.users)}
         <TextField
+          name="email"
           label="Email"
           variant="outlined"
-          onChange={event => this.handleChangeFieldValue(event, 'email')}
+          onChange={e => this.handleChangeFieldValue(e)}
           value={this.state.email}
         />
         <TextField
+          name="password"
           label="Password"
           type="password"
           variant="outlined"
-          onChange={event => this.handleChangeFieldValue(event, 'password')}
+          onChange={e => this.handleChangeFieldValue(e)}
           value={this.state.password}
         />
         <Button
