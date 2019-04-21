@@ -8,25 +8,25 @@ import Button from '../Button';
 
 const renderList = (temp, props) => temp.map(item => (
   <ListItem
-    title={item.name}
-    timing={parseTime(item.length)}
-    text={item.description}
+    title={item.fakeToken}
+    //timing={parseTime(item.length)}
+    text={item.login}
     key={item.id}
-    date={parseDate(item.date)}
+    //date={parseDate(item.date)}
     {...props}
   />
 ));
 class CoursesList extends PureComponent {
-  state = {
-    courses: [],
-    isFetching: true
-  }
+  // state = {
+  //   courses: [],
+  //   isFetching: true
+  // }
 
-  componentDidMount() {
-    getCourses()
-      .then(courses => this.setState({ courses }))
-      .then(() => this.setState({ isFetching: false }));
-  }
+  // componentDidMount() {
+  //   getCourses()
+  //     .then(courses => this.setState({ courses }))
+  //     .then(() => this.setState({ isFetching: false }));
+  // }
 
   render() {
     return (
@@ -34,9 +34,9 @@ class CoursesList extends PureComponent {
         <span className={styles.header}>
         Courses
         </span>
-        {this.state.isFetching && <Loader />}
-        {renderList(this.state.courses, this.props)}
-        {!this.state.isFetching && (
+        {this.props.isFetching && <Loader />}
+        {renderList(this.props.courses, this.props)}
+        {!this.props.isFetching && (
           <Button
             variant="contained"
             color="primary"
