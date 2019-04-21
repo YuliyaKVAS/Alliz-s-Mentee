@@ -21,7 +21,3 @@ export const putData = (url, body) => instance.put(url, body);
 export const putById = (url, id, body) => instance.put(`${url}/${id}`, body);
 
 export const deleteData = (url, id) => instance.delete(`${url}/${id}`);
-
-export default {
-  getData, postData, putData, putById, deleteData
-};
