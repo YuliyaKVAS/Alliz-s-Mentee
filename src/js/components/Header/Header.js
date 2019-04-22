@@ -1,6 +1,8 @@
 import React, { PureComponent } from 'react';
 import { Link } from 'react-router-dom';
-import styles from './Header.less';
+import {
+  headerWrapper, logoName, logo, name, loginButtons
+} from './Header.less';
 import Button from '../Button';
 
 const loginLink = props => <Link to="/login" {...props} />;
@@ -11,16 +13,16 @@ class Header extends PureComponent {
 
   render() {
     return (
-      <div className={styles.headerWrapper}>
-        <div className={styles.logoName}>
-          <div className={styles.logo}>
+      <div className={headerWrapper}>
+        <div className={logoName}>
+          <div className={logo}>
            Logo
           </div>
-          <div className={styles.name}>
+          <div className={name}>
           Name
           </div>
         </div>
-        <div className={styles.loginButtons}>
+        <div className={loginButtons}>
           <Button
             color="primary"
             variant="contained"
