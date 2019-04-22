@@ -1,7 +1,9 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
-import style from './ListItem.less';
+import {
+  first, listTitle, group, timeLabel, dateLabel, second
+} from './ListItem.less';
 import Button from '../Button';
 import styles from './styles';
 
@@ -9,15 +11,15 @@ const ListItem = ({
   title, timing, date, text, classes
 }) => (
   <Paper className={classes.root}>
-    <div className={style.first}>
-      <h5 className={style.listTitle}>
+    <div className={first}>
+      <h5 className={listTitle}>
         {title}
       </h5>
-      <div className={style.group}>
-        <span className={style.timing}>
+      <div className={group}>
+        <span className={timeLabel}>
           {timing}
         </span>
-        <span className={style.date}>
+        <span className={dateLabel}>
           {date}
         </span>
         <Button
@@ -28,7 +30,7 @@ const ListItem = ({
         </Button>
       </div>
     </div>
-    <div className={style.second}>
+    <div className={second}>
       <span>
         {text}
       </span>
