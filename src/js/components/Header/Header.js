@@ -1,7 +1,9 @@
 import React, { PureComponent } from 'react';
 import { Link } from 'react-router-dom';
 import { logoutUser } from '../../services';
-import styles from './Header.less';
+import {
+  headerWrapper, logoName, logo, name, loginButtons
+} from './Header.less';
 import Button from '../Button';
 
 const loginLink = props => <Link to="/login" {...props} />;
@@ -12,19 +14,20 @@ class Header extends PureComponent {
   }
 
   render() {
+    const { isAuth } = this.props;
     return (
-      <div className={styles.headerWrapper}>
-        <div className={styles.logoName}>
-          <div className={styles.logo}>
+      <div className={headerWrapper}>
+        <div className={logoName}>
+          <div className={logo}>
            Logo
           </div>
-          <div className={styles.name}>
+          <div className={name}>
           Name
           </div>
         </div>
 
-        <div className={styles.loginButtons}>
-          {!this.props.isAuth && (
+        <div className={loginButtons}>
+          {!isAuth && (
             <Button
               color="primary"
               variant="contained"
@@ -33,7 +36,7 @@ class Header extends PureComponent {
         log in
             </Button>
           )}
-          {this.props.isAuth && (
+          {isAuth && (
             <Button
               color="secondary"
               variant="contained"

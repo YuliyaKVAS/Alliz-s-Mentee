@@ -1,11 +1,11 @@
 import React from 'react';
 import TextField from '../TextField';
-import style from './SearchPanel.less';
+import { searchWrapper, searchPanel } from './SearchPanel.less';
 import Button from '../Button';
 
 const SearchPanel = () => (
-  <div className={style.searchWrapper}>
-    <div className={style.searchPanel}>
+  <div className={searchWrapper}>
+    <div className={searchPanel}>
       <TextField
         label="Search.."
         variant="outlined"

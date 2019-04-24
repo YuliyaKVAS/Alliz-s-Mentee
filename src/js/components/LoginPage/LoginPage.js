@@ -1,7 +1,7 @@
 import React from 'react';
 import TextField from '../TextField';
 import Button from '../Button';
-import styles from './LoginPage.less';
+import { logInForm } from './LoginPage.less';
 import { authUser, getUsers } from '../../services';
 
 
@@ -33,22 +33,26 @@ class LoginPage extends React.PureComponent {
   };
 
   handleClickLogin = () => {
-    authUser(this.state.email, this.state.password)
+    const { email, password } = this.state;
+    const userLogin = email.trim();
+    const userPassword = password.trim();
+    authUser(userLogin, userPassword)
       .then(() => this.props.history.push('/courses'))
       .then(() => this.props.setAuth(true))
       .then(() => this.setState({ email: '', password: '' }));
   };
 
   render() {
+    const { email, password, users } = this.state;
     return (
-      <div className={styles.logInForm}>
-        {renderUserList(this.state.users)}
+      <div className={logInForm}>
+        {renderUserList(users)}
         <TextField
           name="email"
           label="Email"
           variant="outlined"
           onChange={e => this.handleChangeFieldValue(e)}
-          value={this.state.email}
+          value={email}
         />
         <TextField
           name="password"
@@ -56,12 +60,12 @@ class LoginPage extends React.PureComponent {
           type="password"
           variant="outlined"
           onChange={e => this.handleChangeFieldValue(e)}
-          value={this.state.password}
+          value={password}
         />
         <Button
           color="primary"
           variant="outlined"
-          disabled={!this.state.email || !this.state.password}
+          disabled={!email || !password}
           onClick={this.handleClickLogin}
         >
         Log in
