@@ -4,7 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 import styles from './styles';
 
 const Button = ({
-  variant, color, onClick, disabled, fullWidth, children, classes
+  variant, color, onClick, disabled, fullWidth, children, classes, component
 }) => (
   <MuiButton
     variant={variant}
@@ -13,6 +13,7 @@ const Button = ({
     disabled={disabled}
     className={classes.button}
     fullWidth={fullWidth}
+    component={component}
   >
     {children}
   </MuiButton>

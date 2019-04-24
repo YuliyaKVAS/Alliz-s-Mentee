@@ -1,46 +1,47 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
-import style from './ListItem.less';
+import {
+  first, listTitle, group, timeLabel, dateLabel, second
+} from './ListItem.less';
 import Button from '../Button';
 import styles from './styles';
 
-const ListItem = (props) => {
-  const { classes } = props;
-  return (
-    <Paper className={classes.root}>
-      <div className={style.first}>
-        <h5 className={style.listTitle}>
-          {props.title}
-        </h5>
-        <div className={style.group}>
-          <span className={style.timing}>
-            {props.timing}
-          </span>
-          <span className={style.date}>
-            {props.date}
-          </span>
-          <Button
-            color="primary"
-            variant="outlined"
-          >
-            Edit
-          </Button>
-        </div>
-      </div>
-      <div className={style.second}>
-        <span>
-          {props.text}
+const ListItem = ({
+  title, timing, date, text, classes
+}) => (
+  <Paper className={classes.root}>
+    <div className={first}>
+      <h5 className={listTitle}>
+        {title}
+      </h5>
+      <div className={group}>
+        <span className={timeLabel}>
+          {timing}
+        </span>
+        <span className={dateLabel}>
+          {date}
         </span>
         <Button
-          color="secondary"
+          color="primary"
           variant="outlined"
         >
-          Delete
+          Edit
         </Button>
       </div>
-    </Paper>
-  );
-};
+    </div>
+    <div className={second}>
+      <span>
+        {text}
+      </span>
+      <Button
+        color="secondary"
+        variant="outlined"
+      >
+        Delete
+      </Button>
+    </div>
+  </Paper>
+);
 
 export default withStyles(styles)(ListItem);
