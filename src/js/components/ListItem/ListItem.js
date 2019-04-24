@@ -6,7 +6,7 @@ import Button from '../Button';
 import styles from './styles';
 
 const ListItem = ({
-  title, timing, date, text, classes, isAuth, setAuth
+  title, timing, date, text, classes, isAuth
 }) => (
   <Paper className={classes.root}>
     <div className={style.first}>
