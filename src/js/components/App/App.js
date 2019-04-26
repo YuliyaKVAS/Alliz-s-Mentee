@@ -7,6 +7,7 @@ import Header from '../Header';
 import Footer from '../Footer';
 import Courses from '../Courses';
 import LoginPage from '../LoginPage';
+import CreateCourse from '../CreateCourse';
 import ErrorPage from '../ErrorPage';
 import ProtectedRoute from '../ProtectedRoute';
 
@@ -46,6 +47,10 @@ class App extends PureComponent {
             path="/courses"
             component={props => <Courses {...authProps} {...props} />}
             {...authProps}
+          />
+          <ProtectedRoute
+            path="/add-course"
+            component={CreateCourse}
           />
           <Route component={ErrorPage} />
         </Switch>

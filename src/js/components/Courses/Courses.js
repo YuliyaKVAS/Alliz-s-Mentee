@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import { getCourses, getUsers, getSearchData } from '../../services';
+import { getCourses, getSearchData } from '../../services';
 import AddCoursePanel from '../AddCoursePanel';
 import CoursesList from '../CoursesList';
 
