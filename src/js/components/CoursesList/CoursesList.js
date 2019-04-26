@@ -25,7 +25,8 @@ class CoursesList extends PureComponent {
   componentDidMount() {
     getCourses()
       .then(courses => this.setState({ courses }))
-      .then(() => this.setState({ isFetching: false }));
+      .then(() => this.setState({ isFetching: false }))
+      //.catch((error) => <)
   }
 
   render() {

@@ -38,15 +38,15 @@ class AppContainer extends PureComponent {
             </Route>
             <Route
               path="/login"
-              {...authProps}
               component={props => <LoginPage {...authProps} {...props} />}
             />
             <Route
               path="/courses"
               component={props => <Courses {...authProps} {...props} />}
-              {...authProps}
             />
-            <Route component={ErrorPage} />
+            <Route
+              component={ErrorPage}
+            />
           </Switch>
 
           <Footer />

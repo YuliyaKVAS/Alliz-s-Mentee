@@ -2,10 +2,10 @@ import React from 'react';
 import AddCoursePanel from '../AddCoursePanel';
 import CoursesList from '../CoursesList';
 
-const Courses = ({ isAuth, setAuth }) => (
+const Courses = props => (
   <>
-    <AddCoursePanel isAuth={isAuth} setAuth={setAuth} />
-    <CoursesList isAuth={isAuth} setAuth={setAuth} />
+    <AddCoursePanel {...props} />
+    <CoursesList {...props} />
   </>
 );
 
