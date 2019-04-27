@@ -3,8 +3,6 @@ import {
   HashRouter as Router, Route, Switch, Redirect
 } from 'react-router-dom';
 import ApiProvider from '../ApiProvider';
-// import AppContainer from '../AppContainer';
-import { isUserAuth } from '../../helpers';
 import Header from '../Header';
 import Footer from '../Footer';
 import Courses from '../Courses';

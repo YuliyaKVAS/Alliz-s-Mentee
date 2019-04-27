@@ -45,7 +45,7 @@ class CoursesList extends PureComponent {
             <span className={header}>
           Courses
             </span>
-            {renderList(courses, api.isAuth)}
+            {renderList(courses, { isAuth: api.isAuth })}
             <Button
               variant="contained"
               color="primary"
