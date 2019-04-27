@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react';
+import ApiContext from '../ApiContext';
 import { getCourses } from '../../services';
 import { parseTime, parseDate } from '../../helpers';
 import { container, header } from './CoursesList.less';
@@ -25,8 +26,7 @@ class CoursesList extends PureComponent {
   componentDidMount() {
     getCourses()
       .then(courses => this.setState({ courses }))
-      .then(() => this.setState({ isFetching: false }))
-      //.catch((error) => <)
+      .then(() => this.setState({ isFetching: false }));
   }
 
   render() {
@@ -39,19 +39,23 @@ class CoursesList extends PureComponent {
       );
     }
     return (
-      <div className={container}>
-        <span className={header}>
-        Courses
-        </span>
-        {renderList(courses, this.props)}
-        <Button
-          variant="contained"
-          color="primary"
-          fullWidth
-        >
-          Load more
-        </Button>
-      </div>
+      <ApiContext.Consumer>
+        {api => (
+          <div className={container}>
+            <span className={header}>
+          Courses
+            </span>
+            {renderList(courses, api.isAuth)}
+            <Button
+              variant="contained"
+              color="primary"
+              fullWidth
+            >
+            Load more
+            </Button>
+          </div>
+        )}
+      </ApiContext.Consumer>
     );
   }
 }

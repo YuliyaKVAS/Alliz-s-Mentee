@@ -1,4 +1,5 @@
 import React from 'react';
+import ApiContext from '../ApiContext';
 import TextField from '../TextField';
 import Button from '../Button';
 import { logInForm } from './LoginPage.less';
@@ -32,45 +33,49 @@ class LoginPage extends React.PureComponent {
     this.setState({ [name]: value });
   };
 
-  handleClickLogin = () => {
+  handleClickLogin = setAuth => () => {
     const { email, password } = this.state;
     const userLogin = email.trim();
     const userPassword = password.trim();
     authUser(userLogin, userPassword)
       .then(() => this.props.history.push('/courses'))
-      .then(() => this.props.setAuth(true))
+      .then(() => setAuth(true))
       .then(() => this.setState({ email: '', password: '' }));
   };
 
   render() {
     const { email, password, users } = this.state;
     return (
-      <div className={logInForm}>
-        {renderUserList(users)}
-        <TextField
-          name="email"
-          label="Email"
-          variant="outlined"
-          onChange={e => this.handleChangeFieldValue(e)}
-          value={email}
-        />
-        <TextField
-          name="password"
-          label="Password"
-          type="password"
-          variant="outlined"
-          onChange={e => this.handleChangeFieldValue(e)}
-          value={password}
-        />
-        <Button
-          color="primary"
-          variant="outlined"
-          disabled={!email || !password}
-          onClick={this.handleClickLogin}
-        >
-        Log in
-        </Button>
-      </div>
+      <ApiContext.Consumer>
+        {api => (
+          <div className={logInForm}>
+            {renderUserList(users)}
+            <TextField
+              name="email"
+              label="Email"
+              variant="outlined"
+              onChange={e => this.handleChangeFieldValue(e)}
+              value={email}
+            />
+            <TextField
+              name="password"
+              label="Password"
+              type="password"
+              variant="outlined"
+              onChange={e => this.handleChangeFieldValue(e)}
+              value={password}
+            />
+            <Button
+              color="primary"
+              variant="outlined"
+              disabled={!email || !password}
+              onClick={this.handleClickLogin(api.setAuth)}
+            >
+              Log in
+            </Button>
+          </div>
+        )}
+      </ApiContext.Consumer>
     );
   }
 }
