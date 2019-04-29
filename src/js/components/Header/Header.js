@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import { Link } from 'react-router-dom';
-import ApiContext from '../ApiContext';
+import withAppContext from '../withAppContext';
 import { logoutUser } from '../../services';
 import {
   headerWrapper, logoName, logo, name, loginButtons
@@ -16,44 +16,40 @@ class Header extends PureComponent {
 
   render() {
     return (
-      <ApiContext.Consumer>
-        {api => (
-          <div className={headerWrapper}>
-            <div className={logoName}>
-              <div className={logo}>
-                Logo
-              </div>
-              <div className={name}>
-                Name
-              </div>
-            </div>
-
-            <div className={loginButtons}>
-              {!api.isAuth && (
-                <Button
-                  color="primary"
-                  variant="contained"
-                  component={loginLink}
-                >
-                  log in
-                </Button>
-              )}
-              {api.isAuth && (
-                <Button
-                  color="secondary"
-                  variant="contained"
-                  component={loginLink}
-                  onClick={this.handleLogout(api.setAuth)}
-                >
-                 log out
-                </Button>
-              )}
-            </div>
+      <div className={headerWrapper}>
+        <div className={logoName}>
+          <div className={logo}>
+                 Logo
           </div>
-        )}
-      </ApiContext.Consumer>
+          <div className={name}>
+                 Name
+          </div>
+        </div>
+
+        <div className={loginButtons}>
+          {!this.props.context.isAuth && (
+            <Button
+              color="primary"
+              variant="contained"
+              component={loginLink}
+            >
+                    log in
+            </Button>
+          )}
+          {this.props.context.isAuth && (
+            <Button
+              color="secondary"
+              variant="contained"
+              component={loginLink}
+              onClick={this.handleLogout(this.props.context.setAuth)}
+            >
+                   log out
+            </Button>
+          )}
+        </div>
+      </div>
     );
   }
 }
 
-export default Header;
+export default withAppContext(Header);

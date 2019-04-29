@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import ApiContext from '../ApiContext';
+import withAppContext from '../withAppContext';
 import { getCourses } from '../../services';
 import { parseTime, parseDate } from '../../helpers';
 import { container, header } from './CoursesList.less';
@@ -39,25 +39,21 @@ class CoursesList extends PureComponent {
       );
     }
     return (
-      <ApiContext.Consumer>
-        {api => (
-          <div className={container}>
-            <span className={header}>
+      <div className={container}>
+        <span className={header}>
           Courses
-            </span>
-            {renderList(courses, { isAuth: api.isAuth })}
-            <Button
-              variant="contained"
-              color="primary"
-              fullWidth
-            >
-            Load more
-            </Button>
-          </div>
-        )}
-      </ApiContext.Consumer>
+        </span>
+        {renderList(courses, { isAuth: this.props.context.isAuth })}
+        <Button
+          variant="contained"
+          color="primary"
+          fullWidth
+        >
+          Load more
+        </Button>
+      </div>
     );
   }
 }
 
-export default CoursesList;
+export default withAppContext(CoursesList);

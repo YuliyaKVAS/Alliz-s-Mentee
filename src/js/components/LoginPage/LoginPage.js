@@ -1,5 +1,5 @@
 import React from 'react';
-import ApiContext from '../ApiContext';
+import withAppContext from '../withAppContext';
 import TextField from '../TextField';
 import Button from '../Button';
 import { logInForm } from './LoginPage.less';
@@ -46,38 +46,34 @@ class LoginPage extends React.PureComponent {
   render() {
     const { email, password, users } = this.state;
     return (
-      <ApiContext.Consumer>
-        {api => (
-          <div className={logInForm}>
-            {renderUserList(users)}
-            <TextField
-              name="email"
-              label="Email"
-              variant="outlined"
-              onChange={e => this.handleChangeFieldValue(e)}
-              value={email}
-            />
-            <TextField
-              name="password"
-              label="Password"
-              type="password"
-              variant="outlined"
-              onChange={e => this.handleChangeFieldValue(e)}
-              value={password}
-            />
-            <Button
-              color="primary"
-              variant="outlined"
-              disabled={!email || !password}
-              onClick={this.handleClickLogin(api.setAuth)}
-            >
-              Log in
-            </Button>
-          </div>
-        )}
-      </ApiContext.Consumer>
+      <div className={logInForm}>
+        {renderUserList(users)}
+        <TextField
+          name="email"
+          label="Email"
+          variant="outlined"
+          onChange={e => this.handleChangeFieldValue(e)}
+          value={email}
+        />
+        <TextField
+          name="password"
+          label="Password"
+          type="password"
+          variant="outlined"
+          onChange={e => this.handleChangeFieldValue(e)}
+          value={password}
+        />
+        <Button
+          color="primary"
+          variant="outlined"
+          disabled={!email || !password}
+          onClick={this.handleClickLogin(this.props.context.setAuth)}
+        >
+         Log in
+        </Button>
+      </div>
     );
   }
 }
 
-export default LoginPage;
+export default withAppContext(LoginPage);
