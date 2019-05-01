@@ -1,18 +1,22 @@
 import React from 'react';
+import withAppContext from '../withAppContext';
 import SearchPanel from '../SearchPanel';
 import Button from '../Button';
 import styles from './AddCoursePanel.less';
 
-const AddCoursePanel = () => (
+const AddCoursePanel = props => (
   <div className={styles.panel}>
     <SearchPanel />
-    <Button
-      variant="contained"
-      color="primary"
-    >
-      Add course
-    </Button>
+    {props.context.isAuth && (
+      <Button
+        variant="contained"
+        color="primary"
+      >
+       Add course
+      </Button>
+    )}
   </div>
+
 );
 
-export default AddCoursePanel;
+export default withAppContext(AddCoursePanel);

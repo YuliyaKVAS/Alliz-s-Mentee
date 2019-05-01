@@ -11,3 +11,5 @@ export const parseTime = (sec) => {
 };
 
 export const parseDate = date => new Date(date).toDateString().slice(3);
+
+export const isUserAuth = () => (!!localStorage.getItem('token'));

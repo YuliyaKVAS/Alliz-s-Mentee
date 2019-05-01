@@ -1,35 +1,59 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import withAppContext from '../withAppContext';
 import TextField from '../TextField';
 import Button from '../Button';
-import styles from './LoginPage.less';
+import { logInForm } from './LoginPage.less';
+import { authUser, getUsers } from '../../services';
 
-const coursesLink = props => <Link to="/courses" {...props} />;
 
+const renderUserList = temp => temp.map(item => (
+  <div key={item.id}>
+    <span><b>Login:</b> {item.login} </span>
+    <span><b>Password:</b> {item.password}</span>
+    <hr />
+  </div>
+));
 class LoginPage extends React.PureComponent {
   state = {
     email: '',
-    password: ''
+    password: '',
+    users: []
   };
+
+  componentDidMount() {
+    getUsers()
+      .then((res) => {
+        const users = res.slice(0, 5);
+        this.setState({ users });
+      });
+  }
 
   handleChangeFieldValue = (event) => {
     const { name, value } = event.target;
     this.setState({ [name]: value });
   };
 
-  handleClickLogin = () => {
-    localStorage.setItem('token', this.state.email);
+  handleClickLogin = setAuth => () => {
+    const { email, password } = this.state;
+    const userLogin = email.trim();
+    const userPassword = password.trim();
+    authUser(userLogin, userPassword)
+      .then(() => this.props.history.push('/courses'))
+      .then(() => setAuth(true))
+      .then(() => this.setState({ email: '', password: '' }));
   };
 
   render() {
+    const { email, password, users } = this.state;
     return (
-      <div className={styles.logInForm}>
+      <div className={logInForm}>
+        {renderUserList(users)}
         <TextField
           name="email"
           label="Email"
           variant="outlined"
           onChange={e => this.handleChangeFieldValue(e)}
-          value={this.state.email}
+          value={email}
         />
         <TextField
           name="password"
@@ -37,20 +61,19 @@ class LoginPage extends React.PureComponent {
           type="password"
           variant="outlined"
           onChange={e => this.handleChangeFieldValue(e)}
-          value={this.state.password}
+          value={password}
         />
         <Button
           color="primary"
           variant="outlined"
-          disabled={!this.state.email || !this.state.password}
-          onClick={this.handleClickLogin}
-          component={coursesLink}
+          disabled={!email || !password}
+          onClick={this.handleClickLogin(this.props.context.setAuth)}
         >
-        Log in
+         Log in
         </Button>
       </div>
     );
   }
 }
 
-export default LoginPage;
+export default withAppContext(LoginPage);

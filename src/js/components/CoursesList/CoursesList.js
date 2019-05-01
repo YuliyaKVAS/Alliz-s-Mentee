@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react';
+import withAppContext from '../withAppContext';
 import { getCourses } from '../../services';
 import { parseTime, parseDate } from '../../helpers';
 import { container, header } from './CoursesList.less';
@@ -6,13 +7,14 @@ import ListItem from '../ListItem';
 import Loader from '../Loader';
 import Button from '../Button';
 
-const renderList = temp => temp.map(item => (
+const renderList = (temp, props) => temp.map(item => (
   <ListItem
     title={item.name}
     timing={parseTime(item.length)}
     text={item.description}
     key={item.id}
     date={parseDate(item.date)}
+    {...props}
   />
 ));
 class CoursesList extends PureComponent {
@@ -39,9 +41,9 @@ class CoursesList extends PureComponent {
     return (
       <div className={container}>
         <span className={header}>
-        Courses
+          Courses
         </span>
-        {renderList(courses)}
+        {renderList(courses, { isAuth: this.props.context.isAuth })}
         <Button
           variant="contained"
           color="primary"
@@ -54,4 +56,4 @@ class CoursesList extends PureComponent {
   }
 }
 
-export default CoursesList;
+export default withAppContext(CoursesList);

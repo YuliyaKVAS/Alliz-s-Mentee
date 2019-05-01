@@ -7,6 +7,7 @@ const Courses = () => (
     <AddCoursePanel />
     <CoursesList />
   </>
+
 );
 
 export default Courses;

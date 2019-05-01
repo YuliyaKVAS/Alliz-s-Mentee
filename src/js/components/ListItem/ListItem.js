@@ -8,7 +8,7 @@ import Button from '../Button';
 import styles from './styles';
 
 const ListItem = ({
-  title, timing, date, text, classes
+  title, timing, date, text, classes, isAuth
 }) => (
   <Paper className={classes.root}>
     <div className={first}>
@@ -22,24 +22,28 @@ const ListItem = ({
         <span className={dateLabel}>
           {date}
         </span>
-        <Button
-          color="primary"
-          variant="outlined"
-        >
+        {isAuth && (
+          <Button
+            color="primary"
+            variant="outlined"
+          >
           Edit
-        </Button>
+          </Button>
+        )}
       </div>
     </div>
     <div className={second}>
       <span>
         {text}
       </span>
-      <Button
-        color="secondary"
-        variant="outlined"
-      >
+      {isAuth && (
+        <Button
+          color="secondary"
+          variant="outlined"
+        >
         Delete
-      </Button>
+        </Button>
+      )}
     </div>
   </Paper>
 );

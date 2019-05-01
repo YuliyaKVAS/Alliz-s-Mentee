@@ -7,7 +7,9 @@ const instance = axios.create({
   timeout: 20000
 });
 
-export const getData = url => instance.get(url);
+export const getData = url => instance.get(url)
+  .then(({ data }) => data)
+  .catch(() => new Error('Server error'));
 
 export const postData = (url, body) => {
   const options = {
