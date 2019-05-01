@@ -31,6 +31,7 @@ class CoursesList extends PureComponent {
 
   render() {
     const { isFetching, courses } = this.state;
+    const { context } = this.props;
     if (isFetching) {
       return (
         <div className={container}>
@@ -43,7 +44,7 @@ class CoursesList extends PureComponent {
         <span className={header}>
           Courses
         </span>
-        {renderList(courses, { isAuth: this.props.context.isAuth })}
+        {renderList(courses, { isAuth: context.isAuth })}
         <Button
           variant="contained"
           color="primary"

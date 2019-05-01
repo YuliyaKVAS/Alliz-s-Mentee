@@ -15,6 +15,7 @@ class Header extends PureComponent {
   }
 
   render() {
+    const { context } = this.props;
     return (
       <div className={headerWrapper}>
         <div className={logoName}>
@@ -27,7 +28,7 @@ class Header extends PureComponent {
         </div>
 
         <div className={loginButtons}>
-          {!this.props.context.isAuth && (
+          {!context.isAuth && (
             <Button
               color="primary"
               variant="contained"
@@ -36,12 +37,12 @@ class Header extends PureComponent {
                     log in
             </Button>
           )}
-          {this.props.context.isAuth && (
+          {context.isAuth && (
             <Button
               color="secondary"
               variant="contained"
               component={loginLink}
-              onClick={this.handleLogout(this.props.context.setAuth)}
+              onClick={this.handleLogout(context.setAuth)}
             >
                    log out
             </Button>
