@@ -45,6 +45,7 @@ class LoginPage extends React.PureComponent {
 
   render() {
     const { email, password, users } = this.state;
+    const { context } = this.props;
     return (
       <div className={logInForm}>
         {renderUserList(users)}
@@ -67,7 +68,7 @@ class LoginPage extends React.PureComponent {
           color="primary"
           variant="outlined"
           disabled={!email || !password}
-          onClick={this.handleClickLogin(this.props.context.setAuth)}
+          onClick={this.handleClickLogin(context.setAuth)}
         >
          Log in
         </Button>
