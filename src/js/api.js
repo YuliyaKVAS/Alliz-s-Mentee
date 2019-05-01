@@ -8,10 +8,7 @@ const instance = axios.create({
 });
 
 export const getData = url => instance.get(url)
-  .then((response) => {
-    const data = response.data;
-    return data;
-  })
+  .then(({ data }) => data)
   .catch(() => new Error('Server error'));
 
 export const postData = (url, body) => {

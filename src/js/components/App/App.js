@@ -1,59 +1,41 @@
-import React, { PureComponent } from 'react';
+import React from 'react';
 import {
   HashRouter as Router, Route, Switch, Redirect
 } from 'react-router-dom';
-import { isUserAuth } from '../../helpers';
+import ApiProvider from '../ApiProvider';
 import Header from '../Header';
 import Footer from '../Footer';
 import Courses from '../Courses';
 import LoginPage from '../LoginPage';
 import ErrorPage from '../ErrorPage';
-import ProtectedRoute from '../ProtectedRoute';
 
-class App extends PureComponent {
-  state = {
-    isAuth: false
-  };
-
-  componentDidMount() {
-    this.setState({ isAuth: isUserAuth() });
-  }
-
-  render() {
-    const authProps = {
-      isAuth: this.state.isAuth,
-      setAuth: isLogin => this.setState({ isAuth: isLogin })
-    };
-    return (
-      <Router>
-        <Header
-          {...authProps}
+const App = () => (
+  <ApiProvider>
+    <Router>
+      <Header />
+      <Switch>
+        <Route
+          path="/"
+          exact
+        >
+          <Redirect to="/courses" />
+        </Route>
+        <Route
+          path="/login"
+          component={props => <LoginPage {...props} />}
         />
-        <Switch>
-          <Route
-            path="/"
-            exact
-            {...authProps}
-          >
-            <Redirect to="/courses" {...authProps} />
-          </Route>
-          <Route
-            path="/login"
-            {...authProps}
-            component={props => <LoginPage {...authProps} {...props} />}
-          />
-          <Route
-            path="/courses"
-            component={props => <Courses {...authProps} {...props} />}
-            {...authProps}
-          />
-          <Route component={ErrorPage} />
-        </Switch>
+        <Route
+          path="/courses"
+          component={props => <Courses {...props} />}
+        />
+        <Route
+          component={ErrorPage}
+        />
+      </Switch>
 
-        <Footer />
-      </Router>
-    );
-  }
-}
+      <Footer />
+    </Router>
+  </ApiProvider>
+);
 
 export default App;

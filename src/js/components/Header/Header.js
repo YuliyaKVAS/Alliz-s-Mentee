@@ -1,46 +1,49 @@
 import React, { PureComponent } from 'react';
 import { Link } from 'react-router-dom';
+import withAppContext from '../withAppContext';
 import { logoutUser } from '../../services';
-import styles from './Header.less';
+import {
+  headerWrapper, logoName, logo, name, loginButtons
+} from './Header.less';
 import Button from '../Button';
 
 const loginLink = props => <Link to="/login" {...props} />;
 class Header extends PureComponent {
-  handleLogout = () => {
+  handleLogout = setAuth => () => {
     logoutUser();
-    this.props.setAuth(false);
+    setAuth(false);
   }
 
   render() {
     return (
-      <div className={styles.headerWrapper}>
-        <div className={styles.logoName}>
-          <div className={styles.logo}>
-           Logo
+      <div className={headerWrapper}>
+        <div className={logoName}>
+          <div className={logo}>
+                 Logo
           </div>
-          <div className={styles.name}>
-          Name
+          <div className={name}>
+                 Name
           </div>
         </div>
 
-        <div className={styles.loginButtons}>
-          {!this.props.isAuth && (
+        <div className={loginButtons}>
+          {!this.props.context.isAuth && (
             <Button
               color="primary"
               variant="contained"
               component={loginLink}
             >
-        log in
+                    log in
             </Button>
           )}
-          {this.props.isAuth && (
+          {this.props.context.isAuth && (
             <Button
               color="secondary"
               variant="contained"
               component={loginLink}
-              onClick={this.handleLogout}
+              onClick={this.handleLogout(this.props.context.setAuth)}
             >
-          log out
+                   log out
             </Button>
           )}
         </div>
@@ -49,4 +52,4 @@ class Header extends PureComponent {
   }
 }
 
-export default Header;
+export default withAppContext(Header);

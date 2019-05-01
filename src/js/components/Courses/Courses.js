@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import { getCourses, getUsers, getSearchData } from '../../services';
+import { getCourses, getSearchData } from '../../services';
 import AddCoursePanel from '../AddCoursePanel';
 import CoursesList from '../CoursesList';
 
@@ -30,15 +30,11 @@ class Courses extends PureComponent {
     return (
       <>
         <AddCoursePanel
-          isAuth={this.props.isAuth}
-          setAuth={this.props.setAuth}
           search={this.state.search}
           handleSearchChange={this.handleSearchChange}
           handleSubmitSearch={this.handleSubmitSearch}
         />
         <CoursesList
-          isAuth={this.props.isAuth}
-          setAuth={this.props.setAuth}
           isFetching={this.state.isFetching}
           courses={this.state.courses}
         />
