@@ -29,7 +29,8 @@ export const createCourse = (name, length, description) => postData('courses',
     length,
     date: new Date().toISOString(),
     description
-  });
+  })
+  .catch(() => new Error('Server error'));
 
 export const getSearchData = search => getData(`courses?q=${search}`);
 
