@@ -15,6 +15,7 @@ const SearchPanel = ({ search, handleSearchChange, handleSubmitSearch }) => (
       <Button
         variant="outlined"
         color="primary"
+        disabled={!search}
         onClick={handleSubmitSearch}
       >
         Search
