@@ -21,7 +21,8 @@ class CreateCourse extends PureComponent {
     state = {
       name: '',
       length: '',
-      description: ''
+      description: '',
+      isSending: false
     };
 
     handleChangeFieldValue = (event) => {
@@ -29,14 +30,21 @@ class CreateCourse extends PureComponent {
       this.setState({ [name]: value });
     }
 
+    clearFields = () => {
+      this.setState({ name: '', length: '', description: '' });
+    }
+
     handleCreateCourse = () => {
       const { name, length, description } = this.state;
-      createCourse(name, length, description)
-        .then(() => this.props.history.push('/courses'));
+      this.setState({ isSending: true }, () => createCourse(name, length, description)
+        .then(() => this.props.history.push('/courses'))
+        .catch(this.clearFields));
     }
 
     render() {
-      const { name, length, description } = this.state;
+      const {
+        name, length, description, isSending
+      } = this.state;
       const timePlaceholder = 'Enter time in seconds';
       const helperText = 'for example, 123';
 
@@ -48,11 +56,11 @@ class CreateCourse extends PureComponent {
           {getTextField('description', description, this.handleChangeFieldValue)}
           <Button
             color="primary"
-            disabled={!name || !length || !description}
+            disabled={!name || !length || !description || isSending}
             variant="contained"
             onClick={this.handleCreateCourse}
           >
-            Create Course
+            {isSending ? 'Sending data...' : 'Create Course' }
           </Button>
           <Button
             color="secondary"
