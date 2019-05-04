@@ -23,6 +23,8 @@ export const authUser = (login, password) => postData('auth/login',
     })
   );
 
+export const getMoreData = page => getData(`courses?_page=${page}&_limit=5`);
+
 export const getSearchData = search => getData(`courses?q=${search}`);
 
 export const logoutUser = () => localStorage.removeItem('token');
