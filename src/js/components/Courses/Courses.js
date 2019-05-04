@@ -24,7 +24,8 @@ class Courses extends PureComponent {
     getSearchData(this.state.search)
       .then(courses => this.setState({ courses }))
       .then(() => this.setState({ isFetching: false }))
-      .then(() => this.setState({ search: '' }));
+      .then(() => this.setState({ search: '' }))
+      .catch(() => this.setState({ courses: [] }));
   }
 
   render() {
