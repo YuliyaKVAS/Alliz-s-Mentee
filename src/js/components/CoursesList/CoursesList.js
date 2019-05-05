@@ -1,5 +1,5 @@
 import React from 'react';
-import withAppContext from '../withAppContext';
+import contextConsumer from '../ApiContext/ContextConsumer';
 import { parseTime, parseDate } from '../../helpers';
 import { container, header } from './CoursesList.less';
 import ListItem from '../ListItem';
@@ -36,4 +36,4 @@ const CoursesList = ({ isFetching, courses, ...props }) => (
   </div>
 );
 
-export default withAppContext(CoursesList);
+export default contextConsumer(CoursesList);

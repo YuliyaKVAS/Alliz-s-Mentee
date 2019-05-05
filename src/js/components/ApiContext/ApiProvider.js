@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import ApiContext from '../ApiContext';
+import ApiContext from './ApiContext';
 import { isUserAuth } from '../../helpers';
 
 class ApiProvider extends PureComponent {
