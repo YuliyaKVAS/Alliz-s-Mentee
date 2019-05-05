@@ -8,11 +8,11 @@ import Button from '../Button';
 
 const renderList = (temp, props) => temp.map(item => (
   <ListItem
-    title={item.name}
-    timing={parseTime(item.length)}
-    text={item.description}
+    title={item.name.first}
+    //timing={parseTime(item.length)}
+    //text={item.description}
     key={item.id}
-    date={parseDate(item.date)}
+    //date={parseDate(item.date)}
     {...props}
   />
 ));
@@ -29,8 +29,9 @@ const CoursesList = ({ isFetching, courses, ...props }) => (
         variant="contained"
         color="primary"
         fullWidth
+        onClick={props.handleClickMore}
       >
-        Load more
+        {props.isAllData ? 'All results shown' : 'Load more'}
       </Button>
     )}
   </div>
