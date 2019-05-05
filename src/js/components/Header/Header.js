@@ -34,7 +34,7 @@ class Header extends PureComponent {
               variant="contained"
               component={loginLink}
             >
-                    log in
+              log in
             </Button>
           )}
           {context.isAuth && (
@@ -44,7 +44,7 @@ class Header extends PureComponent {
               component={loginLink}
               onClick={this.handleLogout(context.setAuth)}
             >
-                   log out
+              log out
             </Button>
           )}
         </div>

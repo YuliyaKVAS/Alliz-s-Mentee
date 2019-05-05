@@ -1,6 +1,5 @@
-import React, { PureComponent } from 'react';
+import React from 'react';
 import withAppContext from '../withAppContext';
-import { getCourses } from '../../services';
 import { parseTime, parseDate } from '../../helpers';
 import { container, header } from './CoursesList.less';
 import ListItem from '../ListItem';
@@ -17,44 +16,24 @@ const renderList = (temp, props) => temp.map(item => (
     {...props}
   />
 ));
-class CoursesList extends PureComponent {
-  state = {
-    courses: [],
-    isFetching: true
-  }
 
-  componentDidMount() {
-    getCourses()
-      .then(courses => this.setState({ courses }))
-      .then(() => this.setState({ isFetching: false }));
-  }
-
-  render() {
-    const { isFetching, courses } = this.state;
-    const { context } = this.props;
-    if (isFetching) {
-      return (
-        <div className={container}>
-          <Loader />
-        </div>
-      );
-    }
-    return (
-      <div className={container}>
-        <span className={header}>
-          Courses
-        </span>
-        {renderList(courses, { isAuth: context.isAuth })}
-        <Button
-          variant="contained"
-          color="primary"
-          fullWidth
-        >
-          Load more
-        </Button>
-      </div>
-    );
-  }
-}
+const CoursesList = ({ isFetching, courses, ...props }) => (
+  <div className={container}>
+    <span className={header}>
+  Courses
+    </span>
+    {isFetching && <Loader />}
+    {renderList(courses, { isAuth: props.context.isAuth })}
+    {!isFetching && (
+      <Button
+        variant="contained"
+        color="primary"
+        fullWidth
+      >
+        Load more
+      </Button>
+    )}
+  </div>
+);
 
 export default withAppContext(CoursesList);
