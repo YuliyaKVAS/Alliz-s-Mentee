@@ -9,7 +9,8 @@ class Courses extends PureComponent {
     courses: [],
     isFetching: true,
     page: 1,
-    isAllData: false
+    isAllData: false,
+    currentCourses: []
   }
 
   componentDidMount() {
@@ -34,15 +35,14 @@ class Courses extends PureComponent {
     this.setState(prevState => ({ page: prevState.page + 1 }), () => {
       getMoreData(this.state.page)
         .then((courses) => {
-          if (courses === []) {
-            this.setState({ isAllData: true });
-            return;
-          }
+          this.setState({ currentCourses: courses });
           this.setState(prevState => ({ courses: prevState.courses.concat(courses) }));
         })
         .then(() => this.setState({ isFetching: false }));
     });
   }
+
+  //checkAllData = () => this.state.page < this.state.currentCourses.length;
 
   render() {
     return (
@@ -56,7 +56,9 @@ class Courses extends PureComponent {
           isFetching={this.state.isFetching}
           courses={this.state.courses}
           handleClickMore={this.handleClickMore}
-          isAllData={this.state.isAllData}
+          //checkAllData={this.checkAllData}
+          page={this.state.page}
+          currentCourses={this.state.currentCourses}
         />
       </>
     );

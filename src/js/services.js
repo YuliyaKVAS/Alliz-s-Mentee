@@ -23,7 +23,7 @@ export const authUser = (login, password) => postData('auth/login',
     })
   );
 
-export const getMoreData = page => getData(`users?_page=${page}&_limit=2`);
+export const getMoreData = page => getData(`users?_page=${page}&_limit=3`);
 
 export const getSearchData = search => getData(`courses?q=${search}`);
 

@@ -31,7 +31,7 @@ const CoursesList = ({ isFetching, courses, ...props }) => (
         fullWidth
         onClick={props.handleClickMore}
       >
-        {props.isAllData ? 'All results shown' : 'Load more'}
+        {props.currentCourses.length < 3 ? 'End' : 'Load More'}
       </Button>
     )}
   </div>
