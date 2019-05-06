@@ -1,8 +1,8 @@
 import React, { PureComponent } from 'react';
-import ApiContext from './ApiContext';
+import { ApiContext } from './ApiContext';
 import { isUserAuth } from '../../helpers';
 
-class ApiProvider extends PureComponent {
+export class ApiProvider extends PureComponent {
   state = {
     isAuth: false
   };
@@ -26,5 +26,3 @@ class ApiProvider extends PureComponent {
     );
   }
 }
-
-export default ApiProvider;

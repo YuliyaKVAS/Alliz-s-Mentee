@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import { Link } from 'react-router-dom';
-import contextConsumer from '../ApiContext/ContextConsumer';
+import { contextConsumer } from '../ApiContext/ContextConsumer';
 import { logoutUser } from '../../services';
 import {
   headerWrapper, logoName, logo, name, loginButtons

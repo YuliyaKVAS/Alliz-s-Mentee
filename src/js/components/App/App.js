@@ -2,7 +2,7 @@ import React from 'react';
 import {
   HashRouter as Router, Route, Switch, Redirect
 } from 'react-router-dom';
-import ApiProvider from '../ApiContext/ApiProvider';
+import { ApiProvider } from '../ApiContext/ApiProvider';
 import Header from '../Header';
 import Footer from '../Footer';
 import Courses from '../Courses';

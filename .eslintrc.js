@@ -11,6 +11,7 @@ module.exports = {
     "rules": {
         "react/prop-types": 0,
         "import/no-named-as-default": "off",
+        "import/prefer-default-export": "off",
         "comma-dangle": ["error", "never"],
         "no-param-reassign": [2, {"props": false}],
         "indent": [2, 2, {"SwitchCase": 1}],
