@@ -1,5 +1,5 @@
 import React from 'react';
-import { contextConsumer } from '../ApiContext/ContextConsumer';
+import { contextConsumer } from '../../context/apiContext';
 import { parseTime, parseDate } from '../../helpers';
 import { container, header } from './CoursesList.less';
 import CourseItem from '../CourseItem';

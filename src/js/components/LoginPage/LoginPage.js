@@ -1,5 +1,5 @@
 import React from 'react';
-import { contextConsumer } from '../ApiContext/ContextConsumer';
+import { contextConsumer } from '../../context/apiContext';
 import TextField from '../TextField';
 import Button from '../Button';
 import { logInForm } from './LoginPage.less';
