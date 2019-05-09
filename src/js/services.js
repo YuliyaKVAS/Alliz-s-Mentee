@@ -24,6 +24,14 @@ export const authUser = (login, password) => postData('auth/login',
   );
 
 export const getMoreData = (page, limit) => getData(`courses?_page=${page}&_limit=${limit}`);
+export const createCourse = (name, length, description) => postData('courses',
+  {
+    name,
+    length,
+    date: new Date().toISOString(),
+    description
+  })
+  .catch(() => new Error('Server error'));
 
 export const getSearchData = search => getData(`courses?q=${search}`);
 
