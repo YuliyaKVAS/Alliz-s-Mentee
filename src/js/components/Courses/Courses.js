@@ -1,20 +1,20 @@
 import React, { PureComponent } from 'react';
-import { getCourses, getSearchData, getMoreData } from '../../services';
+import { getSearchData, getMoreData } from '../../services';
 import AddCoursePanel from '../AddCoursePanel';
 import CoursesList from '../CoursesList';
 
+const limit = 4;
 class Courses extends PureComponent {
   state = {
     search: '',
     courses: [],
     isFetching: true,
     page: 1,
-    isAllData: false,
-    currentCourses: []
+    loadedDataLength: limit
   }
 
   componentDidMount() {
-    getMoreData(this.state.page)
+    getMoreData(this.state.page, limit)
       .then(courses => this.setState({ courses }))
       .then(() => this.setState({ isFetching: false }));
   }
@@ -33,32 +33,32 @@ class Courses extends PureComponent {
 
   handleClickMore = () => {
     this.setState(prevState => ({ page: prevState.page + 1 }), () => {
-      getMoreData(this.state.page)
+      getMoreData(this.state.page, limit)
         .then((courses) => {
-          this.setState({ currentCourses: courses });
-          this.setState(prevState => ({ courses: prevState.courses.concat(courses) }));
+          this.setState({ loadedDataLength: courses.length });
+          this.setState(prevState => ({ courses: [...prevState.courses, ...courses] }));
         })
-        .then(() => this.setState({ isFetching: false }));
+        .then(() => this.setState({ isFetching: false }))
+        .catch(() => this.setState({ page: 1 }));
     });
   }
 
-  //checkAllData = () => this.state.page < this.state.currentCourses.length;
+  isAllDataLoaded = () => this.state.loadedDataLength < limit
 
   render() {
+    const { search, isFetching, courses } = this.state;
     return (
       <>
         <AddCoursePanel
-          search={this.state.search}
+          search={search}
           handleSearchChange={this.handleSearchChange}
           handleSubmitSearch={this.handleSubmitSearch}
         />
         <CoursesList
-          isFetching={this.state.isFetching}
-          courses={this.state.courses}
+          isFetching={isFetching}
+          courses={courses}
           handleClickMore={this.handleClickMore}
-          //checkAllData={this.checkAllData}
-          page={this.state.page}
-          currentCourses={this.state.currentCourses}
+          isAllDataLoaded={this.isAllDataLoaded}
         />
       </>
     );
