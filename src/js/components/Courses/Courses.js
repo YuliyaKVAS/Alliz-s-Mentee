@@ -14,9 +14,7 @@ class Courses extends PureComponent {
   }
 
   componentDidMount() {
-    getMoreData(this.state.page, limit)
-      .then(courses => this.setState({ courses }))
-      .then(() => this.setState({ isFetching: false }));
+    this.fetchMoreData();
   }
 
   handleSearchChange = (event) => {
@@ -33,15 +31,18 @@ class Courses extends PureComponent {
 
   handleClickMore = () => {
     this.setState(prevState => ({ page: prevState.page + 1 }), () => {
-      getMoreData(this.state.page, limit)
-        .then((courses) => {
-          this.setState({ loadedDataLength: courses.length });
-          this.setState(prevState => ({ courses: [...prevState.courses, ...courses] }));
-        })
-        .then(() => this.setState({ isFetching: false }))
+      this.fetchMoreData()
         .catch(() => this.setState({ page: 1 }));
     });
   }
+
+  fetchMoreData = () => getMoreData(this.state.page, limit)
+    .then((courses) => {
+      this.setState({ loadedDataLength: courses.length });
+      this.setState(prevState => ({ courses: [...prevState.courses, ...courses] }));
+    })
+    .then(() => this.setState({ isFetching: false }));
+
 
   isAllDataLoaded = () => this.state.loadedDataLength < limit
 
