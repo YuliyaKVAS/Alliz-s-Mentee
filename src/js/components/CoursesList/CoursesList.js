@@ -29,8 +29,10 @@ const CoursesList = ({ isFetching, courses, ...props }) => (
         variant="contained"
         color="primary"
         fullWidth
+        onClick={props.handleClickMore}
+        disabled={props.isAllDataLoaded()}
       >
-        Load more
+        {props.isAllDataLoaded() ? 'All data loaded' : 'Load More'}
       </Button>
     )}
   </div>

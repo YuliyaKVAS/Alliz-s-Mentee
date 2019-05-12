@@ -1,19 +1,20 @@
 import React, { PureComponent } from 'react';
-import { getCourses, getSearchData } from '../../services';
+import { getSearchData, getMoreData } from '../../services';
 import AddCoursePanel from '../AddCoursePanel';
 import CoursesList from '../CoursesList';
 
+const limit = 4;
 class Courses extends PureComponent {
   state = {
     search: '',
     courses: [],
-    isFetching: true
+    isFetching: true,
+    page: 1,
+    loadedDataLength: limit
   }
 
   componentDidMount() {
-    getCourses()
-      .then(courses => this.setState({ courses }))
-      .then(() => this.setState({ isFetching: false }));
+    this.fetchMoreData();
   }
 
   handleSearchChange = (event) => {
@@ -28,17 +29,37 @@ class Courses extends PureComponent {
       .catch(() => this.setState({ courses: [] }));
   }
 
+  handleClickMore = () => {
+    this.setState(prevState => ({ page: prevState.page + 1 }), () => {
+      this.fetchMoreData()
+        .catch(() => this.setState({ page: 1 }));
+    });
+  }
+
+  fetchMoreData = () => getMoreData(this.state.page, limit)
+    .then((courses) => {
+      this.setState({ loadedDataLength: courses.length });
+      this.setState(prevState => ({ courses: [...prevState.courses, ...courses] }));
+    })
+    .then(() => this.setState({ isFetching: false }));
+
+
+  isAllDataLoaded = () => this.state.loadedDataLength < limit
+
   render() {
+    const { search, isFetching, courses } = this.state;
     return (
       <>
         <AddCoursePanel
-          search={this.state.search}
+          search={search}
           handleSearchChange={this.handleSearchChange}
           handleSubmitSearch={this.handleSubmitSearch}
         />
         <CoursesList
-          isFetching={this.state.isFetching}
-          courses={this.state.courses}
+          isFetching={isFetching}
+          courses={courses}
+          handleClickMore={this.handleClickMore}
+          isAllDataLoaded={this.isAllDataLoaded}
         />
       </>
     );
