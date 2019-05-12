@@ -3,11 +3,11 @@ import { withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import {
   first, listTitle, group, timeLabel, dateLabel, second
-} from './ListItem.less';
+} from './CourseItem.less';
 import Button from '../Button';
 import styles from './styles';
 
-const ListItem = ({
+const CourseItem = ({
   title, timing, date, text, classes, isAuth
 }) => (
   <Paper className={classes.root}>
@@ -48,4 +48,4 @@ const ListItem = ({
   </Paper>
 );
 
-export default withStyles(styles)(ListItem);
+export default withStyles(styles)(CourseItem);

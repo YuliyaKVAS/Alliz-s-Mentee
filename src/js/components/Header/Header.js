@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import { Link } from 'react-router-dom';
-import withAppContext from '../withAppContext';
+import { contextConsumer } from '../../context/apiContext';
 import { logoutUser } from '../../services';
 import {
   headerWrapper, logoName, logo, name, loginButtons
@@ -53,4 +53,4 @@ class Header extends PureComponent {
   }
 }
 
-export default withAppContext(Header);
+export default contextConsumer(Header);

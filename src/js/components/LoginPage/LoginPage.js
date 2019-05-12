@@ -1,5 +1,5 @@
 import React from 'react';
-import withAppContext from '../withAppContext';
+import { contextConsumer } from '../../context/apiContext';
 import TextField from '../TextField';
 import Button from '../Button';
 import { logInForm } from './LoginPage.less';
@@ -77,4 +77,4 @@ class LoginPage extends React.PureComponent {
   }
 }
 
-export default withAppContext(LoginPage);
+export default contextConsumer(LoginPage);

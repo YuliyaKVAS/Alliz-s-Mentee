@@ -1,13 +1,13 @@
 import React from 'react';
-import withAppContext from '../withAppContext';
+import { contextConsumer } from '../../context/apiContext';
 import { parseTime, parseDate } from '../../helpers';
 import { container, header } from './CoursesList.less';
-import ListItem from '../ListItem';
+import CourseItem from '../CourseItem';
 import Loader from '../Loader';
 import Button from '../Button';
 
 const renderList = (temp, props) => temp.map(item => (
-  <ListItem
+  <CourseItem
     title={item.name}
     timing={parseTime(item.length)}
     text={item.description}
@@ -38,4 +38,4 @@ const CoursesList = ({ isFetching, courses, ...props }) => (
   </div>
 );
 
-export default withAppContext(CoursesList);
+export default contextConsumer(CoursesList);

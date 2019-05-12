@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import withAppContext from '../withAppContext';
+import { contextConsumer } from '../../context/apiContext';
 import SearchPanel from '../SearchPanel';
 import Button from '../Button';
 import styles from './AddCoursePanel.less';
@@ -28,4 +28,4 @@ const AddCoursePanel = ({
   </div>
 );
 
-export default withAppContext(AddCoursePanel);
+export default contextConsumer(AddCoursePanel);
