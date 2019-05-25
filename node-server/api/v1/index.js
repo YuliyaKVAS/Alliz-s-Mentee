@@ -1,10 +1,9 @@
 const express = require('express');
+const db = require('./queries');
 
 const router = express.Router();
 
-router.get('/users', (req, res) => {
-  res.send('v1 get users');
-});
+router.get('/users', db.getUsers);
 
 router.get('/courses', (req, res) => {
   res.send('v1 get courses');
