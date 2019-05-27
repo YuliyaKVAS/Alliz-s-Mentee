@@ -1,13 +1,12 @@
 const express = require('express');
-const db = require('./queries');
+const users = require('./users');
+const courses = require('./courses');
 
 const router = express.Router();
 
-router.get('/users', db.getUsers);
+router.get('/users', users.getUsers);
 
-router.get('/courses', (req, res) => {
-  res.send('v1 get courses');
-});
+router.get('/courses', courses.getCourses);
 
 router.get('/authors', (req, res) => {
   res.send('v1 get authors');
