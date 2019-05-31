@@ -8,44 +8,49 @@ import Button from '../Button';
 import styles from './styles';
 
 const CourseItem = ({
-  title, timing, date, text, classes, isAuth
-}) => (
-  <Paper className={classes.root}>
-    <div className={first}>
-      <h5 className={listTitle}>
-        {title}
-      </h5>
-      <div className={group}>
-        <span className={timeLabel}>
-          {timing}
-        </span>
-        <span className={dateLabel}>
-          {date}
+  title, timing, date, text, classes, isAuth, item, ...props
+}) => {
+  const deleteCourse = () => props.handleDeleteCourse(item);
+
+  return (
+    <Paper className={classes.root}>
+      <div className={first}>
+        <h5 className={listTitle}>
+          {title}
+        </h5>
+        <div className={group}>
+          <span className={timeLabel}>
+            {timing}
+          </span>
+          <span className={dateLabel}>
+            {date}
+          </span>
+          {isAuth && (
+            <Button
+              color="primary"
+              variant="outlined"
+            >
+            Edit
+            </Button>
+          )}
+        </div>
+      </div>
+      <div className={second}>
+        <span>
+          {text}
         </span>
         {isAuth && (
           <Button
-            color="primary"
+            color="secondary"
             variant="outlined"
+            onClick={deleteCourse}
           >
-          Edit
+          Delete
           </Button>
         )}
       </div>
-    </div>
-    <div className={second}>
-      <span>
-        {text}
-      </span>
-      {isAuth && (
-        <Button
-          color="secondary"
-          variant="outlined"
-        >
-        Delete
-        </Button>
-      )}
-    </div>
-  </Paper>
-);
+    </Paper>
+  );
+};
 
 export default withStyles(styles)(CourseItem);

@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import { getSearchData, getMoreData } from '../../services';
+import { getSearchData, getMoreData, deleteCourse } from '../../services';
 import AddCoursePanel from '../AddCoursePanel';
 import CoursesList from '../CoursesList';
 
@@ -46,6 +46,14 @@ class Courses extends PureComponent {
 
   isAllDataLoaded = () => this.state.loadedDataLength < limit
 
+  handleDeleteCourse = (currentCourse) => {
+    const remainingCourses = this.state.courses.filter(
+      course => course.id !== currentCourse.id
+    );
+    deleteCourse(currentCourse.id)
+      .then(() => this.setState({ courses: remainingCourses }));
+  }
+
   render() {
     const { search, isFetching, courses } = this.state;
     return (
@@ -60,6 +68,7 @@ class Courses extends PureComponent {
           courses={courses}
           handleClickMore={this.handleClickMore}
           isAllDataLoaded={this.isAllDataLoaded}
+          handleDeleteCourse={this.handleDeleteCourse}
         />
       </>
     );

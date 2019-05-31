@@ -12,6 +12,7 @@ const renderList = (temp, props) => temp.map(item => (
     timing={parseTime(item.length)}
     text={item.description}
     key={item.id}
+    item={item}
     date={parseDate(item.date)}
     {...props}
   />
@@ -23,7 +24,10 @@ const CoursesList = ({ isFetching, courses, ...props }) => (
   Courses
     </span>
     {isFetching && <Loader />}
-    {renderList(courses, { isAuth: props.context.isAuth })}
+    {renderList(courses, {
+      isAuth: props.context.isAuth,
+      handleDeleteCourse: props.handleDeleteCourse
+    })}
     {!isFetching && (
       <Button
         variant="contained"
