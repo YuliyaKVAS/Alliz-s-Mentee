@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react';
+import { debounce } from 'lodash';
 import { getSearchData, getMoreData } from '../../services';
 import AddCoursePanel from '../AddCoursePanel';
 import CoursesList from '../CoursesList';
@@ -18,7 +19,8 @@ class Courses extends PureComponent {
   }
 
   handleSearchChange = (event) => {
-    this.setState({ search: event.target.value });
+    this.setState({ search: event.target.value }, this.onUpdateIput(event.target.value));
+    
   }
 
   handleSubmitSearch = () => {
@@ -28,6 +30,19 @@ class Courses extends PureComponent {
       .then(() => this.setState({ search: '' }))
       .catch(() => this.setState({ courses: [] }));
   }
+
+  getSearchResults = (value) => getSearchData(value)
+    .then(courses => this.setState({ courses }));
+
+  clearData = () => this.setState({ courses: [] });
+
+  handleSearchValue = (value) => (
+    value.length >= 3
+    ? this.getSearchResults(name)
+    : this.clearData()
+  );
+
+  onUpdateIput = (val) => debounce(this.handleSearchValue(val), 200);
 
   handleClickMore = () => {
     this.setState(prevState => ({ page: prevState.page + 1 }), () => {
@@ -54,6 +69,7 @@ class Courses extends PureComponent {
           search={search}
           handleSearchChange={this.handleSearchChange}
           handleSubmitSearch={this.handleSubmitSearch}
+          onUpdateIput={this.onUpdateIput}
         />
         <CoursesList
           isFetching={isFetching}

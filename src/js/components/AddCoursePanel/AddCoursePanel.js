@@ -8,13 +8,14 @@ import styles from './AddCoursePanel.less';
 
 const addCourseLink = props => <Link to="/add-course" {...props} />;
 const AddCoursePanel = ({
-  search, handleSearchChange, handleSubmitSearch, ...props
+  search, handleSearchChange, handleSubmitSearch, onUpdateIput, ...props
 }) => (
   <div className={styles.panel}>
     <SearchPanel
       search={search}
       handleSearchChange={handleSearchChange}
       handleSubmitSearch={handleSubmitSearch}
+      onUpdateIput={onUpdateIput}
     />
     {props.context.isAuth && (
       <Button

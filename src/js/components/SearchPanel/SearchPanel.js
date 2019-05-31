@@ -3,7 +3,7 @@ import TextField from '../TextField';
 import { searchWrapper, searchPanel } from './SearchPanel.less';
 import Button from '../Button';
 
-const SearchPanel = ({ search, handleSearchChange, handleSubmitSearch }) => (
+const SearchPanel = ({ search, handleSearchChange, handleSubmitSearch, onUpdateIput }) => (
   <div className={searchWrapper}>
     <div className={searchPanel}>
       <TextField
