@@ -26,7 +26,8 @@ const CoursesList = ({ isFetching, courses, ...props }) => (
     {isFetching && <Loader />}
     {renderList(courses, {
       isAuth: props.context.isAuth,
-      handleDeleteCourse: props.handleDeleteCourse
+      handleDeleteCourse: props.handleDeleteCourse,
+      isFetching
     })}
     {!isFetching && (
       <Button

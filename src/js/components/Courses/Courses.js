@@ -51,7 +51,9 @@ class Courses extends PureComponent {
       course => course.id !== currentCourse.id
     );
     deleteCourse(currentCourse.id)
-      .then(() => this.setState({ courses: remainingCourses }));
+      .then(() => this.setState({ isFetching: true }))
+      .then(() => this.setState({ courses: remainingCourses }))
+      .then(() => this.setState({ isFetching: false }));
   }
 
   render() {

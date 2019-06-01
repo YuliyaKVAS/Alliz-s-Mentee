@@ -44,6 +44,7 @@ const CourseItem = ({
             color="secondary"
             variant="outlined"
             onClick={deleteCourse}
+            disabled={props.isFetching}
           >
           Delete
           </Button>
