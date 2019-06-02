@@ -18,11 +18,6 @@ class Courses extends PureComponent {
     this.fetchMoreData();
   }
 
-  handleSearchChange = (event) => {
-    this.setState({ search: event.target.value }, this.onUpdateIput(event.target.value));
-    
-  }
-
   handleSubmitSearch = () => {
     getSearchData(this.state.search)
       .then(courses => this.setState({ courses }))
@@ -31,18 +26,19 @@ class Courses extends PureComponent {
       .catch(() => this.setState({ courses: [] }));
   }
 
-  getSearchResults = (value) => getSearchData(value)
+  getSearchResults = value => getSearchData(value)
     .then(courses => this.setState({ courses }));
 
-  clearData = () => this.setState({ courses: [] });
 
-  handleSearchValue = (value) => (
-    value.length >= 3
-    ? this.getSearchResults(name)
-    : this.clearData()
-  );
+  handleInputChange = (event) => {
+    this.setState({ search: event.target.value });
+    if (this.state.search.length >= 3) {
+      getSearchData(this.state.search)
+        .then(courses => this.setState({ courses }));
+    }
+  }
 
-  onUpdateIput = (val) => debounce(this.handleSearchValue(val), 200);
+  handleDebounceSearch = e => debounce(this.handleInputChange(e), 200);
 
   handleClickMore = () => {
     this.setState(prevState => ({ page: prevState.page + 1 }), () => {
@@ -67,9 +63,8 @@ class Courses extends PureComponent {
       <>
         <AddCoursePanel
           search={search}
-          handleSearchChange={this.handleSearchChange}
           handleSubmitSearch={this.handleSubmitSearch}
-          onUpdateIput={this.onUpdateIput}
+          handleDebounceSearch={this.handleDebounceSearch}
         />
         <CoursesList
           isFetching={isFetching}
