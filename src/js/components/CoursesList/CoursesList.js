@@ -1,5 +1,4 @@
 import React from 'react';
-import { contextConsumer } from '../../context/apiContext';
 import { parseTime, parseDate } from '../../helpers';
 import { container, header } from './CoursesList.less';
 import CourseItem from '../CourseItem';
@@ -12,6 +11,7 @@ const renderList = (temp, props) => temp.map(item => (
     timing={parseTime(item.length)}
     text={item.description}
     key={item.id}
+    item={item}
     date={parseDate(item.date)}
     {...props}
   />
@@ -23,7 +23,10 @@ const CoursesList = ({ isFetching, courses, ...props }) => (
   Courses
     </span>
     {isFetching && <Loader />}
-    {renderList(courses, { isAuth: props.context.isAuth })}
+    {renderList(courses, {
+      handleDeleteCourse: props.handleDeleteCourse,
+      isFetching
+    })}
     {!isFetching && (
       <Button
         variant="contained"
@@ -38,4 +41,4 @@ const CoursesList = ({ isFetching, courses, ...props }) => (
   </div>
 );
 
-export default contextConsumer(CoursesList);
+export default CoursesList;

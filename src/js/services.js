@@ -1,4 +1,4 @@
-import { getData, postData } from './api';
+import { getData, postData, deleteData } from './api';
 
 export const getCourses = () => getData('courses');
 
@@ -34,5 +34,8 @@ export const createCourse = (name, length, description) => postData('courses',
   .catch(() => new Error('Server error'));
 
 export const getSearchData = search => getData(`courses?q=${search}`);
+
+export const deleteCourse = id => deleteData('courses', id)
+  .catch(() => new Error('Server error'));
 
 export const logoutUser = () => localStorage.removeItem('token');
