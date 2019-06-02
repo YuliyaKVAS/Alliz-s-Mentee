@@ -1,5 +1,4 @@
 import React from 'react';
-import { contextConsumer } from '../../context/apiContext';
 import { parseTime, parseDate } from '../../helpers';
 import { container, header } from './CoursesList.less';
 import CourseItem from '../CourseItem';
@@ -25,7 +24,6 @@ const CoursesList = ({ isFetching, courses, ...props }) => (
     </span>
     {isFetching && <Loader />}
     {renderList(courses, {
-      isAuth: props.context.isAuth,
       handleDeleteCourse: props.handleDeleteCourse,
       isFetching
     })}
@@ -43,4 +41,4 @@ const CoursesList = ({ isFetching, courses, ...props }) => (
   </div>
 );
 
-export default contextConsumer(CoursesList);
+export default CoursesList;

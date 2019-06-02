@@ -1,6 +1,7 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
+import { contextConsumer } from '../../context/apiContext';
 import {
   first, listTitle, group, timeLabel, dateLabel, second
 } from './CourseItem.less';
@@ -8,8 +9,9 @@ import Button from '../Button';
 import styles from './styles';
 
 const CourseItem = ({
-  title, timing, date, text, classes, isAuth, item, ...props
+  title, timing, date, text, classes, item, ...props
 }) => {
+  const { context } = props;
   const deleteCourse = () => props.handleDeleteCourse(item);
 
   return (
@@ -25,7 +27,7 @@ const CourseItem = ({
           <span className={dateLabel}>
             {date}
           </span>
-          {isAuth && (
+          {context.isAuth && (
             <Button
               color="primary"
               variant="outlined"
@@ -39,7 +41,7 @@ const CourseItem = ({
         <span>
           {text}
         </span>
-        {isAuth && (
+        {context.isAuth && (
           <Button
             color="secondary"
             variant="outlined"
@@ -54,4 +56,4 @@ const CourseItem = ({
   );
 };
 
-export default withStyles(styles)(CourseItem);
+export default contextConsumer(withStyles(styles)(CourseItem));
