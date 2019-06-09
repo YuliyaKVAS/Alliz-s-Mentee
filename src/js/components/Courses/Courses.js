@@ -36,7 +36,7 @@ class Courses extends PureComponent {
     if (search.length >= 3) this.getSearchResults(search);
   }
 
-  handleDebounceSearch = () => debounce(this.handleInputChange, 1000);
+  handleDebounceSearch = e => debounce(this.handleInputChange(e), 1000);
 
   handleClickMore = () => {
     this.setState(prevState => ({ page: prevState.page + 1 }), () => {
