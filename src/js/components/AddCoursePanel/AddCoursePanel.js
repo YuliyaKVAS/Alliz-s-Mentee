@@ -14,7 +14,6 @@ const AddCoursePanel = ({
     <SearchPanel
       search={search}
       handleSubmitSearch={handleSubmitSearch}
-      onUpdateIput={props.onUpdateIput}
       handleDebounceSearch={handleDebounceSearch}
     />
     {props.context.isAuth && (

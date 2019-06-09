@@ -5,28 +5,25 @@ import Button from '../Button';
 
 const SearchPanel = ({
   search, handleSubmitSearch, handleDebounceSearch
-}) => {
-  const onUpdateInput = e => handleDebounceSearch(e);
-  return (
-    <div className={searchWrapper}>
-      <div className={searchPanel}>
-        <TextField
-          label="Search.."
-          variant="outlined"
-          value={search}
-          onChange={onUpdateInput}
-        />
-        <Button
-          variant="outlined"
-          color="primary"
-          disabled={!search}
-          onClick={handleSubmitSearch}
-        >
+}) => (
+  <div className={searchWrapper}>
+    <div className={searchPanel}>
+      <TextField
+        label="Search.."
+        variant="outlined"
+        value={search}
+        onChange={handleDebounceSearch}
+      />
+      <Button
+        variant="outlined"
+        color="primary"
+        disabled={!search}
+        onClick={handleSubmitSearch}
+      >
           Search
-        </Button>
-      </div>
+      </Button>
     </div>
-  );
-};
+  </div>
+);
 
 export default SearchPanel;

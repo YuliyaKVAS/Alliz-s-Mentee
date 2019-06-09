@@ -32,13 +32,11 @@ class Courses extends PureComponent {
 
   handleInputChange = (event) => {
     this.setState({ search: event.target.value });
-    if (this.state.search.length >= 3) {
-      getSearchData(this.state.search)
-        .then(courses => this.setState({ courses }));
-    }
+    const { search } = this.state;
+    if (search.length >= 3) this.getSearchResults(search);
   }
 
-  handleDebounceSearch = e => debounce(this.handleInputChange(e), 200);
+  handleDebounceSearch = () => debounce(this.handleInputChange, 1000);
 
   handleClickMore = () => {
     this.setState(prevState => ({ page: prevState.page + 1 }), () => {
