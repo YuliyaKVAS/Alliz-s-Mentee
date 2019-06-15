@@ -13,3 +13,13 @@ export const parseTime = (sec) => {
 export const parseDate = date => new Date(date).toDateString().slice(3);
 
 export const isUserAuth = () => (!!localStorage.getItem('token'));
+
+export const debounce = (fn, ms = 1000) => {
+  let timeoutId;
+  return (...args) => {
+    const callback = () => fn.apply(this, args);
+    // eslint-disable-next-line no-unused-expressions
+    timeoutId && clearTimeout(timeoutId);
+    timeoutId = setTimeout(() => callback, ms);
+  };
+};
