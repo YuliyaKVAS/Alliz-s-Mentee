@@ -1,7 +1,8 @@
 import React from 'react';
 import TextField from '../TextField';
-import { searchWrapper, searchPanel } from './SearchPanel.less';
 import Button from '../Button';
+
+import { searchWrapper, searchPanel } from './SearchPanel.less';
 
 const SearchPanel = ({ search, handleSearchChange, handleSubmitSearch }) => (
   <div className={searchWrapper}>

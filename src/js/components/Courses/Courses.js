@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react';
 import { getSearchData, getMoreData } from '../../services';
+import { sortByField } from '../../helpers';
 import AddCoursePanel from '../AddCoursePanel';
 import CoursesList from '../CoursesList';
 
@@ -46,6 +47,14 @@ class Courses extends PureComponent {
 
   isAllDataLoaded = () => this.state.loadedDataLength < limit
 
+  onSortingByName = (e) => {
+    const name = 'name';
+    const option = e.target.value;
+    const { courses } = this.state;
+
+    this.setState({ courses: sortByField(courses, option, name) });
+  }
+
   render() {
     const { search, isFetching, courses } = this.state;
     return (
@@ -60,6 +69,7 @@ class Courses extends PureComponent {
           courses={courses}
           handleClickMore={this.handleClickMore}
           isAllDataLoaded={this.isAllDataLoaded}
+          onSortingByName={this.onSortingByName}
         />
       </>
     );

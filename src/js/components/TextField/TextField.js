@@ -1,6 +1,6 @@
 import React from 'react';
-import { withStyles } from '@material-ui/core/styles';
-import { TextField as MuiTextField } from '@material-ui/core';
+import { TextField as MuiTextField, withStyles } from '@material-ui/core';
+
 import styles from './styles';
 
 const TextField = ({

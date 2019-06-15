@@ -10,6 +10,7 @@ module.exports = {
     },
     "rules": {
         "react/prop-types": 0,
+        "react/no-array-index-key": "off",
         "import/no-named-as-default": "off",
         "import/prefer-default-export": "off",
         "comma-dangle": ["error", "never"],

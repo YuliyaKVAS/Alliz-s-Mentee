@@ -13,3 +13,16 @@ export const parseTime = (sec) => {
 export const parseDate = date => new Date(date).toDateString().slice(3);
 
 export const isUserAuth = () => (!!localStorage.getItem('token'));
+
+export const sortByField = (array, option, field) => {
+  const sortingField = field;
+  const sortedArray = [...array]
+    .sort((a, b) => {
+      if (option === 'asc') {
+        return (a[sortingField] <= b[sortingField] ? -1 : 1);
+      }
+      return (a[sortingField] >= b[sortingField] ? -1 : 1);
+    });
+
+  return sortedArray;
+};

@@ -1,6 +1,6 @@
 import React from 'react';
-import { withStyles } from '@material-ui/core/styles';
-import LinearProgress from '@material-ui/core/LinearProgress';
+import { LinearProgress, withStyles } from '@material-ui/core';
+
 import style from './Loader.less';
 
 const styles = {
