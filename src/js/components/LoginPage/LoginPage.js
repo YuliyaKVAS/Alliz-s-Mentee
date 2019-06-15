@@ -2,8 +2,9 @@ import React from 'react';
 import { contextConsumer } from '../../context/apiContext';
 import TextField from '../TextField';
 import Button from '../Button';
-import { logInForm } from './LoginPage.less';
 import { authUser, getUsers } from '../../services';
+
+import { logInForm } from './LoginPage.less';
 
 
 const renderUserList = temp => temp.map(item => (

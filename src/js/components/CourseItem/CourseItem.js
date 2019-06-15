@@ -1,11 +1,11 @@
 import React from 'react';
-import { withStyles } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
+import { Paper, withStyles } from '@material-ui/core';
+import Button from '../Button';
+import styles from './styles';
+
 import {
   first, listTitle, group, timeLabel, dateLabel, second
 } from './CourseItem.less';
-import Button from '../Button';
-import styles from './styles';
 
 const CourseItem = ({
   title, timing, date, text, classes, isAuth

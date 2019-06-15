@@ -2,10 +2,11 @@ import React, { PureComponent } from 'react';
 import { Link } from 'react-router-dom';
 import { contextConsumer } from '../../context/apiContext';
 import { logoutUser } from '../../services';
+import Button from '../Button';
+
 import {
   headerWrapper, logoName, logo, name, loginButtons
 } from './Header.less';
-import Button from '../Button';
 
 const loginLink = props => <Link to="/login" {...props} />;
 class Header extends PureComponent {
