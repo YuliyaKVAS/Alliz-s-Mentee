@@ -39,7 +39,8 @@ class Courses extends PureComponent {
   fetchMoreData = () => getMoreData(this.state.page, limit)
     .then((courses) => {
       this.setState({ loadedDataLength: courses.length });
-      this.setState(prevState => ({ courses: [...prevState.courses, ...courses] }));
+      const fav = courses.filter(item => item.isTopRated);
+      this.setState(prevState => ({ courses: [...fav, ...prevState.courses, ...courses] }));
     })
     .then(() => this.setState({ isFetching: false }));
 

@@ -1,6 +1,8 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
+import IconButton from '@material-ui/core/IconButton';
+import Star from '@material-ui/icons/Star';
 import {
   first, listTitle, group, timeLabel, dateLabel, second
 } from './CourseItem.less';
@@ -16,6 +18,9 @@ const CourseItem = ({
         {title}
       </h5>
       <div className={group}>
+        <IconButton>
+          <Star />
+        </IconButton>
         <span className={timeLabel}>
           {timing}
         </span>

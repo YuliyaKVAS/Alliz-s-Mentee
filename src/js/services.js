@@ -35,4 +35,9 @@ export const createCourse = (name, length, description) => postData('courses',
 
 export const getSearchData = search => getData(`courses?q=${search}`);
 
+export const makeCoursePopular = isTopRated => postData('courses',
+  {
+    isTopRated
+  });
+
 export const logoutUser = () => localStorage.removeItem('token');
